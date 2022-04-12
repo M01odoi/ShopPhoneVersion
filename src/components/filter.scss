@@ -1,0 +1,95 @@
+.filterHeader {
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+}
+
+.categories {
+  display: flex;
+  width: 80%;
+  margin-left: 50px;
+  //justify-content: space-between;
+
+  div {
+    font-weight: bold;
+  }
+
+  button {
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 10px;
+    margin-left: 15px;
+  }
+  .purple{
+    background: #b920b9;
+  }
+  button:nth-child(3){
+    background: #c5c5c5;
+    color: black;
+  }
+  button:last-child {
+    background: #c5c5c5;
+    color: black;
+  }
+}
+.buttonBlackWhite{
+  padding: 0;
+  background: black !important;
+  color: white !important;
+}
+.categoriesChoose {
+  display: flex;
+  flex-wrap: wrap;
+  width: 73%;
+  margin: 0 auto;
+  padding-top: 20px;
+  button:first-child {
+    background: #b920b9;
+    color: white;
+  }
+  button:nth-child(2){
+    border: 3px #b920b9 solid;
+  }
+  button {
+    background: #c5c5c5;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  span.display{
+    background: black;
+    color: white;
+    padding: 0 5px 3px 5px;
+    border-radius: 5px;
+  }
+}
+.displayNone{
+  display: none;
+}
+.display{
+  display: initial;
+}
+.editing{
+  margin-left: 50px;
+  color: #6e6e6e;
+}
+.editing2{
+  padding-top: 20px;
+
+}
+

@@ -1,0 +1,25 @@
+.modal {
+  height: 100vh;
+  max-width: 576px;
+  width: 375px;
+  position: absolute;
+  z-index: 2;
+  opacity: 1000;
+  top: 0;
+  //left: 200px;
+}
+.button{
+  display: none;
+}
+
+.modal.active{
+}
+
+.modalContent {
+  height: 100vh;
+  max-width: 576px;
+  width: 375px;
+  background-color: white;
+  z-index: 2;
+  position: relative;
+}

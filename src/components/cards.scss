@@ -1,0 +1,40 @@
+.cards{
+  //min-height: 300px;
+}
+
+.lastCard {
+  background: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 150px;
+  border: none;
+  cursor: pointer;
+}
+.lastCard:active{
+  background: #9b9b9b;
+}
+
+.ticket {
+  margin: 20px 10px 10px 10px;
+  //transform: translateY(15px);
+  background: #c5c5c5;
+  border-radius: 15px;
+  min-height: 200px;
+  height: fit-content;
+
+  p {
+    margin: 5px 10px 5px 10px;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 15px;
+    opacity: 0.6;
+  }
+}
+.item {
+  color: #6e6e6e;
+}
+
