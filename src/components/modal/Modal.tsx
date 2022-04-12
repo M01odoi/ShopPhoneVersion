@@ -1,13 +1,10 @@
 import './modal.scss'
 import Filter from "../Filter";
 
-const Modal = ({active, setActive}: { active: boolean, setActive: Function }) => {
+const Modal = ({setActive}: { setActive: Function }):JSX.Element => {
     return (
-        <div className={active?'modal':'button'} >
-            <div  className={active?'modalContent':'button'}>
+            <div  className='modalContent'>
                 <Filter setActive={setActive}/>
-
-            </div>
         </div>
     )
 }

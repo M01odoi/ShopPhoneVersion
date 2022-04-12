@@ -1,45 +1,42 @@
 import './cards.scss';
 import StackGrid from "react-stack-grid";
-import cardImg from '../img/cardImg.jpg'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {faBars, faPlusCircle, faSearch, faSlidersH} from "@fortawesome/free-solid-svg-icons";
+import {useAppDispatch, useAppSelector} from "../hooks/redux";
+import products from "../api/products";
+import {IProduct} from "../interfaces/IProduct";
+import {setNewProduct} from "../store/reducers/productSlice";
 
-library.add(faPlusCircle);
+const Cards = (): JSX.Element => {
+    const dispatch = useAppDispatch();
+    products.then((value: IProduct[]) => {
+        dispatch(setNewProduct(value));
+    })
+    const state = useAppSelector(state => state.products);
 
-
-const Cards = () => {
+    const renderCards = (): JSX.Element[] => {
+        let tickets = [];
+        if (state.products) {
+            for (const i of state.products) {
+                tickets.push(<div className='ticket' key={i.id}>
+                    <img
+                        src={i.img}
+                        alt=""/>
+                    <p>{i.name}</p>
+                    <p>{i.cost} <span
+                        className='item'>{i.per}</span></p>
+                </div>)
+            }
+        }
+        return tickets
+    }
     return (
-        // <div className='cards'>
         <StackGrid duration={0} columnWidth={170} gutterHeight={5}>
-            <div className='ticket'>
-                <img
-                    src={cardImg}
-                    alt=""/>
-                <p>Product 1</p>
-                <p>USD 100.00 <span className='item'>item</span></p>
-            </div>
-            <div className='ticket'>
-                <img
-                    src={cardImg}
-                    alt=""/>
-                <p>Lorem ipsum dolor sit amet, </p>
-                <p>USD 100.00 <span className='item'>piece</span></p>
-            </div>
-
-            <div className='ticket'>
-                <img
-                    src={cardImg}
-                    alt=""/>
-                <p>Lorem ipsum dolor sit amet, Lorem amet, </p>
-                <p>USD 100.00 <span className='item'>item</span></p>
-            </div>
+            {renderCards()}
             <button className='ticket lastCard'>
-               <FontAwesomeIcon icon={'plus-circle'} className='fa-3x'/>
+                <FontAwesomeIcon icon={'plus-circle'} className='fa-3x'/>
                 <p>Tap to add<br/> a new item</p>
             </button>
         </StackGrid>
-        // </div>
     )
 }
 

@@ -1,6 +1,6 @@
-// import cardImg from "../img/cardImg.jpg";
 
 export interface IProduct {
+    id: string
     img: string
     name: string
     cost: string

@@ -4,7 +4,7 @@ import {IProduct} from "../interfaces/IProduct";
 const products:Promise<IProduct[]> = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve(cards);
-    }, 5000)
+    }, 1000)
 })
 
 export default products;

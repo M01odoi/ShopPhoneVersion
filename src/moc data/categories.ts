@@ -1,18 +1,17 @@
-const categories: Array<object> = [
+import {ICategory} from "../interfaces/ICategory";
+
+const categories: ICategory[] = [
     {
         id: 1,
         name: 'category_1',
-        edit: false,
     },
     {
         id: 2,
         name: 'category_2',
-        edit: false,
     },
     {
         id: 3,
         name: 'Uncategorised',
-        edit: false,
     }
 ]
 
