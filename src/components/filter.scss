@@ -11,6 +11,14 @@
   }
 }
 
+.purpleColor {
+  color: #b920b9;
+}
+
+.buttonBack {
+  width: 31px;
+}
+
 .categories {
   display: flex;
   width: 80%;
@@ -32,36 +40,31 @@
     border-radius: 10px;
     margin-left: 15px;
   }
-  .purple{
-    background: #b920b9;
-  }
-  .buttonBlack{
+
+
+  .buttonBlack {
     background: #c5c5c5;
     color: black;
   }
+
   button:last-child {
     background: #c5c5c5;
     color: black;
   }
 }
-.buttonBlackWhite{
-  padding: 0;
-  background: black !important;
-  color: white !important;
-}
+
 .categoriesChoose {
+  list-style: none;
+  padding: 20px 0 0 0;
   display: flex;
   flex-wrap: wrap;
   width: 73%;
   margin: 0 auto;
-  padding-top: 20px;
-  button:first-child {
-    background: #b920b9;
-    color: white;
-  }
-  button:nth-child(2){
-    border: 3px #b920b9 solid;
-  }
+  //padding-top: 20px;
+
+  //button:nth-child(2){
+  //  border: 3px #b920b9 solid;
+  //}
   button {
     background: #c5c5c5;
     border: none;
@@ -71,25 +74,102 @@
     margin-top: 10px;
     cursor: pointer;
   }
-  span.display{
+
+  .purpleBorder {
+    border: #b920b9 3px solid;
+  }
+
+  .buttonBlackWhite {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 10px;
+    background: black;
+    color: white;
+  }
+
+  span.display {
     background: black;
     color: white;
     padding: 0 5px 3px 5px;
     border-radius: 5px;
   }
+  input{
+    background: #c5c5c5;
+    width: 70px;
+    //max-width: 100px;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
 }
-.displayNone{
+
+.displayNone {
   display: none;
 }
-.display{
+
+.display {
   display: initial;
 }
-.editing{
+
+.purple {
+  background: #b920b9 !important;
+  color: white;
+}
+
+.editing {
   margin-left: 50px;
   color: #6e6e6e;
 }
-.editing2{
+
+.editing2 {
   padding-top: 20px;
 
 }
 
+.disabled {
+  opacity: 0.4;
+}
+
+.sectionView {
+  width: 73%;
+  margin: 0 auto;
+
+  h6 {
+    font-weight: inherit;
+    text-align: center;
+    margin: 15px 0 5px 0;
+    border-bottom: 3px #b920b9 solid;
+  }
+
+  div {
+    height: 50px;
+    background: #c5c5c5;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      height: inherit;
+      border-radius: 15px;
+      opacity: 0.6;
+    }
+
+    p {
+      margin: 5px 0;
+      width: 60%;
+      font-size: 0.9rem;
+    }
+
+    button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      margin-right: 20px;
+      padding: 0;
+    }
+  }
+}

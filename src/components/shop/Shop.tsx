@@ -2,14 +2,14 @@ import './shop.scss';
 import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faArrowLeft, faBars, faSearch, faSlidersH, faPencil,faInfo, faCheck, faPlus,faTrash, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
+import {faArrowLeft, faBars, faSearch, faSlidersH, faPencil,faInfo, faCheck, faPlus,faTrash, faPlusCircle,faX} from "@fortawesome/free-solid-svg-icons";
 import Cards from "../Cards";
 import Modal from "../modal/Modal";
 // import {ReactComponent as List} from "components/list-button-svgrepo-com.svg";
 // import Modal from "./modal/Modal";
 import products from "../../api/products";
 
-library.add(faBars, faSearch, faSlidersH,faArrowLeft,faPencil,faInfo, faCheck, faPlus,faTrash,faPlusCircle);
+library.add(faBars, faSearch, faSlidersH,faArrowLeft,faPencil,faInfo, faCheck, faPlus,faTrash,faPlusCircle,faX);
 
 const Shop = () => {
     const [modalActive, setModalActive] = useState(false);
