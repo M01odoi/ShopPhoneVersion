@@ -8,7 +8,7 @@ import {addNewCategory, deleteCategory, editCategory, setCategory} from "../../s
 import cardImg from '../../img/cardImg.jpg';
 
 
-const Filter = (props: { setActive: Function }) => {
+const Filter = (props: { setActive: Function }):JSX.Element => {
     const dispatch = useAppDispatch();
     useEffect(() => {
         category.then((value: ICategory[]) => {
@@ -25,8 +25,8 @@ const Filter = (props: { setActive: Function }) => {
                          defaultValue={state.categories[id - 1].name}/> :
                     <button className={activeCategory === id && activeChange && !addingCategory ? 'purpleBorder' : ''}
                             onClick={() => setActiveCategory(id)}>
-                        {activeCategory === id &&
-                        <span className={activeChange ? 'display' : 'displayNone'}>{id}</span>}
+                        {activeCategory === id && activeCategory &&
+                        <span>{id}</span>}
                         {' ' + state.categories[id - 1].name}
                     </button>)}
                 {

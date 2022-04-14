@@ -73,6 +73,12 @@
     margin-right: 15px;
     margin-top: 10px;
     cursor: pointer;
+    span {
+      background: black;
+      color: white;
+      padding: 0 5px 3px 5px;
+      border-radius: 5px;
+    }
   }
   button:active{
     background: #6e6e6e;
@@ -90,12 +96,7 @@
     color: white;
   }
 
-  span.display {
-    background: black;
-    color: white;
-    padding: 0 5px 3px 5px;
-    border-radius: 5px;
-  }
+
   input{
     background: #c5c5c5;
     width: 100px;
@@ -118,10 +119,6 @@
       margin-left: 30px;
     }
   }
-}
-
-.displayNone {
-  display: none;
 }
 
 .display {

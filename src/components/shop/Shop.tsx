@@ -20,7 +20,7 @@ import Modal from "../modal/Modal";
 
 library.add(faBars, faSearch, faSlidersH, faArrowLeft, faPencil, faInfo, faCheck, faPlus, faTrash, faPlusCircle, faX);
 
-const Shop = () => {
+const Shop = ():JSX.Element => {
     const [modalActive, setModalActive] = useState(false);
     return (<>
             <div className='shop'>
