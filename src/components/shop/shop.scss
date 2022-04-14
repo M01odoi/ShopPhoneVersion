@@ -2,7 +2,7 @@
   margin: 0 auto;
   border: 1px solid black;
   width: 375px;
-height: 100vh;
+  height: 100vh;
   .logo {
     display: flex;
     justify-content: space-between;
@@ -52,9 +52,5 @@ height: 100vh;
         margin-left: 10px;
       }
     }
-  }
-
-  .input {
-
   }
 }

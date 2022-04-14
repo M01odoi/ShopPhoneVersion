@@ -21,7 +21,6 @@ const categorySlice = createSlice({
             state.categories && (state.categories = state.categories.filter((obj) => obj.id !== action.payload));
         },
         editCategory(state, action) {
-            console.log(action.payload.activeCategory - 1, state.categories);
             state.categories &&
             (state.categories.splice(action.payload.activeCategory - 1, 1, {
                 id: action.payload.activeCategory,

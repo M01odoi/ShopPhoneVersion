@@ -1,5 +1,5 @@
 import './shop.scss';
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {
@@ -22,7 +22,6 @@ library.add(faBars, faSearch, faSlidersH, faArrowLeft, faPencil, faInfo, faCheck
 
 const Shop = () => {
     const [modalActive, setModalActive] = useState(false);
-    useEffect(() => console.log(modalActive), [modalActive])
     return (<>
             <div className='shop'>
 

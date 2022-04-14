@@ -11,11 +11,9 @@ import cardImg from '../../img/cardImg.jpg';
 const Filter = (props: { setActive: Function }) => {
     const dispatch = useAppDispatch();
     useEffect(() => {
-        if (!state.categories) {
-            category.then((value: ICategory[]) => {
-                dispatch(setCategory(value));
-            });
-        }
+        category.then((value: ICategory[]) => {
+            dispatch(setCategory(value));
+        });
     }, []);
     const state = useAppSelector(state => state.category);
     const renderLiCategory = (id: number): JSX.Element => {
@@ -40,14 +38,14 @@ const Filter = (props: { setActive: Function }) => {
                                     state.categories && setNewName(state.categories[id - 1].name);
                                     setChangeName(true);
                                 }}
-                                disabled={addingCategory ? true : undefined} className=' buttonBlackWhite'>
+                                disabled={addingCategory} className=' buttonBlackWhite'>
                                 <FontAwesomeIcon icon={'pencil'} className='fa-lg'/>
                             </button>
                             <button onClick={() => {
                                 dispatch(deleteCategory(activeCategory));
                                 setActiveCategory(1);
                             }}
-                                    disabled={addingCategory ? true : undefined} className='buttonBlackWhite'>
+                                    disabled={addingCategory} className='buttonBlackWhite'>
                                 <FontAwesomeIcon icon={'trash'} className='fa-lg'/>
                             </button>
                         </> : <>
@@ -83,11 +81,13 @@ const Filter = (props: { setActive: Function }) => {
                   <button className='purple'>All</button>
                 </li>}
                 {addingCategory &&
-                <li><div className='flexColumn'><input className='purpleBorder' defaultValue='New Category' type="text"
-                           onChange={(e) => {
-                               setNewCategory(e.target.value);
-                           }}/>
-                  <span>{charLeft - newCategory.length>=0? `${charLeft - newCategory.length} char left`:'Too mach'}</span></div>
+                <li>
+                  <div className='flexColumn'><input className='purpleBorder' defaultValue='New Category' type="text"
+                                                     onChange={(e) => {
+                                                         setNewCategory(e.target.value);
+                                                     }}/>
+                    <span>{charLeft - newCategory.length >= 0 ? `${charLeft - newCategory.length} char left` : 'Too mach'}</span>
+                  </div>
                   <button onClick={() => {
                       dispatch(addNewCategory(newCategory));
                       setAddingCategory(false);
@@ -108,9 +108,6 @@ const Filter = (props: { setActive: Function }) => {
     const [changeName, setChangeName] = useState(false);
     const [newName, setNewName] = useState('');
     const [charLeft, setCharLeft] = useState(20);
-    useEffect(() => {
-        console.log(changeName, addingCategory)
-    }, [changeName, addingCategory])
 
     return (<>
             <div className='filterHeader'>
@@ -133,9 +130,9 @@ const Filter = (props: { setActive: Function }) => {
                   <FontAwesomeIcon icon={'pencil'} className='fa-lg'/></button>}
                 {
                     activeChange && <>
-                      <button disabled={(addingCategory || changeName) ? true : undefined} className='buttonBlack'>All
+                      <button disabled={addingCategory || changeName} className='buttonBlack'>All
                       </button>
-                      <button disabled={(addingCategory || changeName) ? true : undefined} onClick={() => {
+                      <button disabled={addingCategory || changeName} onClick={() => {
                           setAddingCategory(true);
                           setCharLeft(20);
                       }
@@ -145,14 +142,14 @@ const Filter = (props: { setActive: Function }) => {
                       <button onClick={() => {
                           setChangeName(false);
                           setActiveChange(false);
-                      }} disabled={(addingCategory || changeName) ? true : undefined} className='purple'>
+                      }} disabled={addingCategory || changeName} className='purple'>
                         <FontAwesomeIcon icon={'check'}
                                          className='fa-lg'/>
                       </button>
                     </>
                 }
-                <button disabled={addingCategory || changeName ? true : undefined}><FontAwesomeIcon icon={'info'}
-                                                                                                    className='fa-xl'/>
+                <button disabled={addingCategory || changeName}><FontAwesomeIcon icon={'info'}
+                                                                                 className='fa-xl'/>
                 </button>
             </div>
             {state.categories && renderUlCategories()}
@@ -167,8 +164,5 @@ const Filter = (props: { setActive: Function }) => {
         </>
     )
 }
-const mas= [1,2,3,4,5,6,1,2];
-(mas.splice(0,2,0));
-            console.log(mas)
 
 export default Filter;
