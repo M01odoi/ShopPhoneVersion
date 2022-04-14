@@ -1,16 +1,19 @@
 .shop {
   margin: 0 auto;
   border: 1px solid black;
-  max-width: 576px;
   width: 375px;
 height: 100vh;
   .logo {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
+    width: 87%;
     align-content: center;
     margin: 0 auto;
+    h1{
+      margin: 22px 0;
+      font-size: 2rem;
+    }
     button{
       background: none;
       border: none;
@@ -21,7 +24,7 @@ height: 100vh;
   .search {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 87%;
     margin: 0 auto;
     .buttonSearch{
       border: none;

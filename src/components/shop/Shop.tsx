@@ -2,14 +2,23 @@ import './shop.scss';
 import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faArrowLeft, faBars, faSearch, faSlidersH, faPencil,faInfo, faCheck, faPlus,faTrash, faPlusCircle,faX} from "@fortawesome/free-solid-svg-icons";
-import Cards from "../Cards";
+import {
+    faArrowLeft,
+    faBars,
+    faCheck,
+    faInfo,
+    faPencil,
+    faPlus,
+    faPlusCircle,
+    faSearch,
+    faSlidersH,
+    faTrash,
+    faX
+} from "@fortawesome/free-solid-svg-icons";
+import Cards from "../cards/Cards";
 import Modal from "../modal/Modal";
-// import {ReactComponent as List} from "components/list-button-svgrepo-com.svg";
-// import Modal from "./modal/Modal";
-import products from "../../api/products";
 
-library.add(faBars, faSearch, faSlidersH,faArrowLeft,faPencil,faInfo, faCheck, faPlus,faTrash,faPlusCircle,faX);
+library.add(faBars, faSearch, faSlidersH, faArrowLeft, faPencil, faInfo, faCheck, faPlus, faTrash, faPlusCircle, faX);
 
 const Shop = () => {
     const [modalActive, setModalActive] = useState(false);
@@ -17,11 +26,11 @@ const Shop = () => {
     return (<>
             <div className='shop'>
 
-                <div className='logo'>
+                <section className='logo'>
                     <h1>Shop</h1>
                     <button><FontAwesomeIcon icon="bars" className='fa-xl'/></button>
-                </div>
-                <div className='search'>
+                </section>
+                <section className='search'>
                     <div className='searching'>
                         <input type={"text"} placeholder={'Search'}/>
                         <button className='buttonSearch'><FontAwesomeIcon icon="search"/>
@@ -31,7 +40,7 @@ const Shop = () => {
                         setModalActive(true)
                     }}>
                         <FontAwesomeIcon icon='sliders-h' className='fa-xl'/></button>
-                </div>
+                </section>
                 <Cards/>
                 {modalActive && <Modal setActive={setModalActive}/>}
             </div>

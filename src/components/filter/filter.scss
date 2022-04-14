@@ -74,7 +74,9 @@
     margin-top: 10px;
     cursor: pointer;
   }
-
+  button:active{
+    background: #6e6e6e;
+  }
   .purpleBorder {
     border: #b920b9 3px solid;
   }
@@ -96,7 +98,7 @@
   }
   input{
     background: #c5c5c5;
-    width: 70px;
+    width: 100px;
     //max-width: 100px;
     border: none;
     padding: 5px 10px;
@@ -104,6 +106,17 @@
     margin-right: 15px;
     margin-top: 10px;
     cursor: pointer;
+  }
+  li{
+    display: flex;
+  }
+  .flexColumn{
+    display: flex;
+    flex-direction: column;
+    span{
+      font-size: 0.8rem;
+      margin-left: 30px;
+    }
   }
 }
 
@@ -130,7 +143,7 @@
 
 }
 
-.disabled {
+button:disabled {
   opacity: 0.4;
 }
 

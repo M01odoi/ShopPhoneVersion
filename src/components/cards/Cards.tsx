@@ -1,10 +1,10 @@
 import './cards.scss';
 import StackGrid from "react-stack-grid";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {useAppDispatch, useAppSelector} from "../hooks/redux";
-import products from "../api/products";
-import {IProduct} from "../interfaces/IProduct";
-import {setNewProduct} from "../store/reducers/productSlice";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import products from "../../api/products";
+import {IProduct} from "../../interfaces/IProduct";
+import {setNewProduct} from "../../store/reducers/productSlice";
 
 const Cards = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -17,19 +17,21 @@ const Cards = (): JSX.Element => {
         let tickets = [];
         if (state.products) {
             for (const i of state.products) {
-                tickets.push(<div className='ticket' key={i.id}>
+                tickets.push(
+                    <article className='ticket' key={i.id}>
                     <img
                         src={i.img}
                         alt=""/>
                     <p>{i.name}</p>
                     <p>{i.cost} <span
                         className='item'>{i.per}</span></p>
-                </div>)
+                </article>)
             }
         }
         return tickets
     }
     return (
+        <section>
         <StackGrid duration={0} columnWidth={170} gutterHeight={5}>
             {renderCards()}
             <button className='ticket lastCard'>
@@ -37,6 +39,7 @@ const Cards = (): JSX.Element => {
                 <p>Tap to add<br/> a new item</p>
             </button>
         </StackGrid>
+        </section>
     )
 }
 

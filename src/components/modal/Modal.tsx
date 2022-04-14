@@ -1,5 +1,5 @@
 import './modal.scss'
-import Filter from "../Filter";
+import Filter from "../filter/Filter";
 
 const Modal = ({setActive}: { setActive: Function }):JSX.Element => {
     return (
