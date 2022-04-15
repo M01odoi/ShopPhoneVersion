@@ -12,7 +12,7 @@ const categorySlice = createSlice({
     initialState,
     reducers: {
         setCategory(state, action: PayloadAction<ICategory[]>) {
-            state.categories = action.payload;
+            !state.categories && (state.categories = action.payload);
         },
         addNewCategory(state, action) {
             state.categories && state.categories.push({id: state.categories.length + 1, name: action.payload});

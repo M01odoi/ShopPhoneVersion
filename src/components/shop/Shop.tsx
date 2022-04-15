@@ -1,5 +1,5 @@
 import './shop.scss';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {
@@ -17,10 +17,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Cards from "../cards/Cards";
 import Modal from "../modal/Modal";
+import {useAppDispatch} from "../../hooks/redux";
+import category from "../../api/category";
+import {ICategory} from "../../interfaces/ICategory";
+import {setCategory} from "../../store/reducers/categorySlice";
 
 library.add(faBars, faSearch, faSlidersH, faArrowLeft, faPencil, faInfo, faCheck, faPlus, faTrash, faPlusCircle, faX);
 
 const Shop = ():JSX.Element => {
+    const dispatch = useAppDispatch();
+
     const [modalActive, setModalActive] = useState(false);
     return (<>
             <div className='shop'>

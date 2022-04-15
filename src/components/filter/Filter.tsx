@@ -2,16 +2,17 @@ import './filter.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import category from "../../api/category";
-import {ICategory} from "../../interfaces/ICategory";
 import {addNewCategory, deleteCategory, editCategory, setCategory} from "../../store/reducers/categorySlice";
 import cardImg from '../../img/cardImg.jpg';
+import category from "../../api/category";
+import {ICategory} from "../../interfaces/ICategory";
 
 
 const Filter = (props: { setActive: Function }):JSX.Element => {
     const dispatch = useAppDispatch();
     useEffect(() => {
         category.then((value: ICategory[]) => {
+            console.log('setCategory');
             dispatch(setCategory(value));
         });
     }, []);
