@@ -1,8 +1,12 @@
-.shop {
+body {
   margin: 0 auto;
   border: 1px solid black;
   width: 375px;
   height: 100vh;
+  ul{
+    list-style: none;
+    padding: 0;
+  }
   .logo {
     display: flex;
     justify-content: space-between;

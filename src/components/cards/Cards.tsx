@@ -1,3 +1,4 @@
+import React from "react";
 import './cards.scss';
 import StackGrid from "react-stack-grid";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -11,27 +12,25 @@ const Cards = (): JSX.Element => {
     products.then((value: IProduct[]) => {
         dispatch(setNewProduct(value));
     })
-    const state = useAppSelector(state => state.products);
+    const arrProducts = useAppSelector(state => state.products.products);
 
     const renderCards = (): JSX.Element[] => {
-        let tickets = [];
-        if (state.products) {
-            for (const i of state.products) {
-                tickets.push(
-                    <article className='ticket' key={i.id}>
+        let tickets: JSX.Element[] = [];
+        arrProducts && arrProducts.forEach((arr) => {
+            tickets.push(
+                <section className='ticket' key={arr.id}>
                     <img
-                        src={i.img}
+                        src={arr.img}
                         alt=""/>
-                    <p>{i.name}</p>
-                    <p>{i.cost} <span
-                        className='item'>{i.per}</span></p>
-                </article>)
-            }
-        }
+                    <h4>{arr.name}</h4>
+                    <p>{arr.cost} <span
+                        className='item'>{arr.per}</span></p>
+                </section>
+            )
+        })
         return tickets
     }
     return (
-        <section>
         <StackGrid duration={0} columnWidth={170} gutterHeight={5}>
             {renderCards()}
             <button className='ticket lastCard'>
@@ -39,7 +38,6 @@ const Cards = (): JSX.Element => {
                 <p>Tap to add<br/> a new item</p>
             </button>
         </StackGrid>
-        </section>
     )
 }
 
