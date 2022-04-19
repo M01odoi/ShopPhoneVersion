@@ -1,8 +1,7 @@
 import {addNewCategory} from "../../../store/reducers/categorySlice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import RenderLiCategory from './RenderLiCategory';
-import FilterContext from "../FilterContext";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {setIsAddingCategory} from "../../../store/reducers/categoryStateSlice";
 
@@ -24,13 +23,13 @@ const RenderUlCategories = (): JSX.Element => {
         <ul className='categoriesChoose'>
             {
                 !isActiveChange &&
-                <li>
+                <li key='qwerty'>
                   <button className='purple'>All</button>
                 </li>
             }
             {
                 isAddingCategory &&
-                <li>
+                <li key='ytrewq'>
                   <div className='flexColumn'>
                     <input
                       className='purpleBorder' value={newCategory}

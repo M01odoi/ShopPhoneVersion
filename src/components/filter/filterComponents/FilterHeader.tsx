@@ -1,6 +1,5 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import React, {useContext} from "react";
-import FilterContext from "../FilterContext";
+import React from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {setIsActiveChange} from "../../../store/reducers/categoryStateSlice";
 
@@ -9,15 +8,10 @@ interface Props {
 }
 
 const FilterHeader: React.FC<Props> = ({setActive}): JSX.Element => {
-    // const {
-    //     setIsActiveChange,
-    //     isActiveChange,
-    // } = useContext(FilterContext);
+
     const dispatch = useAppDispatch();
     const {
-
         isActiveChange,
-
     } = useAppSelector(state => state.categoryState)
     return (
         <div className='filterHeader'>

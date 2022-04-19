@@ -1,14 +1,14 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import RenderUlCategories from "./RenderUlCategory";
 import cardImg from "../../../img/cardImg.jpg";
-import React, {useContext} from "react";
-import FilterContext from "../FilterContext";
+import React from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {
     setActiveCategory,
     setCharLeft,
     setIsActiveChange,
-    setIsAddingCategory, setIsChangeName
+    setIsAddingCategory,
+    setIsChangeName
 } from "../../../store/reducers/categoryStateSlice";
 
 const SectionOfChoosing = (): JSX.Element => {
@@ -19,15 +19,7 @@ const SectionOfChoosing = (): JSX.Element => {
         isActiveChange,
     } = useAppSelector(state => state.categoryState)
     const dispatch = useAppDispatch();
-    // const {
-    //     setCharLeft,
-    //     setIsAddingCategory,
-    //     isChangeName,
-    //     setIsActiveChange,
-    //     isActiveChange,
-    //     isAddingCategory, setActiveCategory,
-    //     setIsChangeName
-    // } = useContext(FilterContext);
+
     return (
         <section>
             {isActiveChange && <div className='display editing'>Categories editing</div>}

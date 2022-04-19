@@ -1,5 +1,4 @@
-import React, {useContext, useState} from "react";
-import FilterContext from "../FilterContext";
+import React, {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {deleteCategory, editCategory} from "../../../store/reducers/categorySlice";
