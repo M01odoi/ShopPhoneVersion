@@ -31,14 +31,10 @@ const Shop = (): JSX.Element => {
                 <button><FontAwesomeIcon icon="bars" className='fa-xl'/></button>
             </header>
             <main>
-                <ul>
-                    <li className='search'>
-                       <Searching setIsShowModal={setIsShowModal}/>
-                    </li>
-                    <li>
-                        <Cards/>
-                    </li>
-                </ul>
+                <div className='search'>
+                    <Searching setIsShowModal={setIsShowModal}/>
+                </div>
+                <Cards/>
                 {isShowModal && <Modal setActive={setIsShowModal}/>}
             </main>
         </>

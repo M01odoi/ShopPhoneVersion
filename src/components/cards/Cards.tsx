@@ -18,26 +18,29 @@ const Cards = (): JSX.Element => {
         let tickets: JSX.Element[] = [];
         arrProducts && arrProducts.forEach((arr) => {
             tickets.push(
-                <section className='ticket' key={arr.id}>
-                    <img
-                        src={arr.img}
-                        alt=""/>
-                    <h4>{arr.name}</h4>
-                    <p>{arr.cost} <span
-                        className='item'>{arr.per}</span></p>
-                </section>
+                <li key={arr.id}>
+                    <section className='ticket' key={arr.id}>
+                        <img src={arr.img} alt=""/>
+                        <h4>{arr.name}</h4>
+                        <p>{arr.cost}
+                            <span className='item'> {' ' + arr.per}</span>
+                        </p>
+                    </section>
+                </li>
             )
         })
         return tickets
     }
     return (
-        <StackGrid duration={0} columnWidth={170} gutterHeight={5}>
-            {renderCards()}
-            <button className='ticket lastCard'>
-                <FontAwesomeIcon icon={'plus-circle'} className='fa-3x'/>
-                <p>Tap to add<br/> a new item</p>
-            </button>
-        </StackGrid>
+        <ul>
+            <StackGrid duration={0} columnWidth={170} gutterHeight={5}>
+                {renderCards()}
+                <button className='ticket lastCard'>
+                    <FontAwesomeIcon icon={'plus-circle'} className='fa-3x'/>
+                    <p>Tap to add<br/> a new item</p>
+                </button>
+            </StackGrid>
+        </ul>
     )
 }
 
