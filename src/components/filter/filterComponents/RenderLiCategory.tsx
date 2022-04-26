@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {deleteCategory, editCategory} from "../../../store/reducers/categorySlice";
@@ -10,20 +10,26 @@ interface Props {
 }
 
 const RenderLiCategory: React.FC<Props> = ({id, index}): JSX.Element => {
-    const arrCategories = useAppSelector(state => state.category.categories);
+    const arrCategories = useAppSelector(state => state.category.fakeCategories);
+
     const {
         activeCategory,
         isAddingCategory,
         isChangeName,
         isActiveChange,
-        charLeft
+        charLeft,
+        isAllActiveCategory,
     } = useAppSelector(state => state.categoryState)
     const dispatch = useAppDispatch();
     const [newName, setNewName] = useState('');
+    const ref = React.useRef<HTMLInputElement | null>(null);
+
+    useEffect(() => {
+        ref.current?.select();
+    }, [isChangeName]);
 
     return (
         <li key={id}>
-
             {arrCategories &&
             (isChangeName && activeCategory === id ? (
                     activeCategory === id && (<div className='flexColumn'>
@@ -31,6 +37,7 @@ const RenderLiCategory: React.FC<Props> = ({id, index}): JSX.Element => {
                                 type="text"
                                 size={10}
                                 maxLength={20}
+                                ref={ref}
                                 onChange={(e) => setNewName(e.target.value)}
                                 value={newName}
                             />
@@ -57,7 +64,8 @@ const RenderLiCategory: React.FC<Props> = ({id, index}): JSX.Element => {
                 )
             )}
             {
-                isActiveChange && activeCategory === id &&
+                (isAllActiveCategory || (isActiveChange && activeCategory === id)) && (arrCategories &&
+                    arrCategories[arrCategories.length - 1].id !== id) &&
                 <>
                     {
                         !isChangeName ? (
@@ -75,7 +83,7 @@ const RenderLiCategory: React.FC<Props> = ({id, index}): JSX.Element => {
                                 </button>
                                 <button
                                     onClick={() => {
-                                        dispatch(deleteCategory(activeCategory));
+                                        dispatch(deleteCategory(id));
                                         dispatch(setActiveCategory(1));
                                     }}
                                     disabled={isAddingCategory} className='buttonBlackWhite'
@@ -88,7 +96,7 @@ const RenderLiCategory: React.FC<Props> = ({id, index}): JSX.Element => {
                                 <button
                                     className='purple buttonBlackWhite'
                                     onClick={() => {
-                                        dispatch(editCategory({activeCategory, newName}));
+                                        dispatch(editCategory({id, newName}));
                                         setNewName('');
                                         dispatch(setIsChangeName(false));
                                     }}>

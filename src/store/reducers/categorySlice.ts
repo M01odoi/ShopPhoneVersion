@@ -3,9 +3,10 @@ import {ICategory} from "../../interfaces/ICategory";
 
 interface ICategorySlice {
     categories: ICategory[] | null;
+    fakeCategories: ICategory[] | null;
 }
 
-const initialState: ICategorySlice = {categories: null};
+const initialState: ICategorySlice = {categories: null, fakeCategories: null};
 
 const categorySlice = createSlice({
     name: 'category',
@@ -13,22 +14,45 @@ const categorySlice = createSlice({
     reducers: {
         setCategory(state, action: PayloadAction<ICategory[]>) {
             !state.categories && (state.categories = action.payload);
+            !state.fakeCategories && (state.fakeCategories = action.payload);
         },
+
+        updateCategory(state) {
+            state.categories = JSON.parse(JSON.stringify(state.fakeCategories));
+        },
+
+        updateFakeCategory(state) {
+            state.fakeCategories = JSON.parse(JSON.stringify(state.categories));
+        },
+
         addNewCategory(state, action) {
-            state.categories && state.categories.push({id: state.categories.length + 1, name: action.payload});
+            state.fakeCategories?.splice(state.fakeCategories.length - 1, 1, {
+                id: state.fakeCategories.length,
+                name: action.payload
+            })
+            state.fakeCategories?.push({id: state.fakeCategories.length + 1, name: 'Uncategorised'})
+
         },
-        deleteCategory(state, action: PayloadAction<number>) {
-            state.categories && (state.categories = state.categories.filter((obj) => obj.id !== action.payload));
+        deleteCategory(state, action: PayloadAction<number | Array<number>>) {
+            state.fakeCategories &&
+            (state.fakeCategories = state.fakeCategories.filter((obj) => obj.id !== action.payload));
         },
         editCategory(state, action) {
-            state.categories &&
-            (state.categories.splice(action.payload.activeCategory - 1, 1, {
-                id: action.payload.activeCategory,
+            console.log(action.payload);
+            state.fakeCategories?.splice(action.payload.id - 1, 1, {
+                id: action.payload.id,
                 name: action.payload.newName
-            }));
+            });
         },
     }
 })
-export const {setCategory, addNewCategory, deleteCategory, editCategory} = categorySlice.actions
+export const {
+    setCategory,
+    addNewCategory,
+    deleteCategory,
+    editCategory,
+    updateCategory,
+    updateFakeCategory
+} = categorySlice.actions
 
 export default categorySlice.reducer;

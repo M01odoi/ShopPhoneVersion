@@ -19,6 +19,7 @@ const Filter: React.FC<Props> = ({setActive}): JSX.Element => {
             dispatch(setCategory(value));
         });
     }, []);
+
     return (
         <>
             <FilterHeader setActive={setActive}/>

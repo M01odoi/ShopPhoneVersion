@@ -3,9 +3,11 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 interface ISlice {
     isActiveChange: boolean,
     activeCategory: number,
+    isAllActiveCategory: boolean,
     isAddingCategory: boolean,
     isChangeName: boolean,
     charLeft: number,
+    isValid: boolean,
 }
 
 const initialState: ISlice = {
@@ -13,7 +15,9 @@ const initialState: ISlice = {
     activeCategory: 0,
     isAddingCategory: false,
     isChangeName: false,
-    charLeft: 0
+    charLeft: 0,
+    isValid: true,
+    isAllActiveCategory: false,
 }
 
 const categoryStateSlice = createSlice({
@@ -35,7 +39,12 @@ const categoryStateSlice = createSlice({
         setCharLeft(state, action: PayloadAction<number>) {
             state.charLeft = action.payload;
         },
-
+        setIsValid(state, action: PayloadAction<boolean>) {
+            state.isValid = action.payload;
+        },
+        setIsAllActiveCategory(state, action: PayloadAction<boolean>) {
+            state.isAllActiveCategory = action.payload;
+        },
     }
 })
 
@@ -44,7 +53,9 @@ export const {
     setActiveCategory,
     setIsAddingCategory,
     setIsChangeName,
-    setCharLeft
+    setCharLeft,
+    setIsValid,
+    setIsAllActiveCategory,
 } = categoryStateSlice.actions
 
 export default categoryStateSlice.reducer;

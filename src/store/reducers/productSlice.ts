@@ -13,6 +13,8 @@ const productSlice = createSlice({
     initialState,
     reducers: {
         setNewProduct(state, action: PayloadAction<IProduct[]>) {
+            console.log(action.payload);
+            // state.products?.push()
             state.products = action.payload;
         },
     }

@@ -21,19 +21,19 @@ import Searching from "./shopComponents/Searching";
 
 library.add(faBars, faSearch, faSlidersH, faArrowLeft, faPencil, faInfo, faCheck, faPlus, faTrash, faPlusCircle, faX);
 
-const Shop = (): JSX.Element => {
-
+const Shop: React.FC = (): JSX.Element => {
     const [isShowModal, setIsShowModal] = useState(false);
+
     return (
         <>
-            <header className='logo'>
+            <header className='header'>
                 <h1>Shop</h1>
-                <button><FontAwesomeIcon icon="bars" className='fa-xl'/></button>
+                <button>
+                    <FontAwesomeIcon icon="bars" className='fa-xl'/>
+                </button>
             </header>
             <main>
-                <div className='search'>
-                    <Searching setIsShowModal={setIsShowModal}/>
-                </div>
+                <Searching setIsShowModal={setIsShowModal}/>
                 <Cards/>
                 {isShowModal && <Modal setActive={setIsShowModal}/>}
             </main>

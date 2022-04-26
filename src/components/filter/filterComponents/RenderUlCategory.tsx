@@ -1,53 +1,69 @@
 import {addNewCategory} from "../../../store/reducers/categorySlice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import RenderLiCategory from './RenderLiCategory';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {setIsAddingCategory} from "../../../store/reducers/categoryStateSlice";
+import {setIsAddingCategory, setIsValid} from "../../../store/reducers/categoryStateSlice";
+import validation from "../validation";
 
-const RenderUlCategories = (): JSX.Element => {
-    let arr: JSX.Element[] = [];
-    const arrCategories = useAppSelector(state => state.category.categories);
+
+const RenderUlCategories: React.FC = (): JSX.Element => {
+    const arrCategories = useAppSelector(state => state.category.fakeCategories);
     const dispatch = useAppDispatch();
     const [newCategory, setNewCategory] = useState('New Category');
     const {
         isAddingCategory,
         isActiveChange,
-        charLeft
+        charLeft,
+        isValid
     } = useAppSelector(state => state.categoryState)
+    const ref = React.useRef<HTMLInputElement | null>(null);
 
-    arrCategories && arrCategories
-        .forEach((elem, index) => arr.push(<RenderLiCategory id={elem.id} index={index}/>))
+    const validationCategory: Function = (): void => {
+        if (validation(newCategory)) {
+            dispatch(addNewCategory(newCategory));
+            setNewCategory('New Category');
+            dispatch(setIsAddingCategory(false));
+        } else {
+            dispatch(setIsValid(false));
+        }
+    }
+    useEffect(() => {
+        ref.current?.select();
+    }, [isAddingCategory])
 
     return (
         <ul className='categoriesChoose'>
             {
                 !isActiveChange &&
-                <li key='qwerty'>
+                <li>
                   <button className='purple'>All</button>
                 </li>
             }
             {
                 isAddingCategory &&
-                <li key='ytrewq'>
+                <li>
                   <div className='flexColumn'>
                     <input
                       className='purpleBorder' value={newCategory}
                       type="text"
+                      maxLength={20}
+                      ref={ref}
                       onChange={(e) => {
+                          dispatch(setIsValid(true));
                           setNewCategory(e.target.value);
                       }}/>
-                    <span className='charLeft'>
-                    {charLeft - newCategory.length >= 0 ?
-                        `${charLeft - newCategory.length} char left` :
-                        'Too mach'}
+                    <span className={isValid ? 'charLeft' : 'incorrectName'}>
+                    {isValid ?
+                        (charLeft - newCategory.length >= 0 ?
+                            `${charLeft - newCategory.length} char left` :
+                            'Too mach')
+                        : 'Incorrect name'}
                 </span>
                   </div>
                   <button className={'buttonBlackWhite purple'}
                           onClick={() => {
-                              dispatch(addNewCategory(newCategory));
-                              setNewCategory('New Category');
-                              dispatch(setIsAddingCategory(false));
+                              validationCategory();
                           }}
                   >
                     <FontAwesomeIcon icon={'check'} className='fa-lg'/>
@@ -56,7 +72,10 @@ const RenderUlCategories = (): JSX.Element => {
                     <FontAwesomeIcon icon={'x'} className='fa-lg'/>
                   </button>
                 </li>}
-            {arr}
+            {/*{isActiveChange ? arrFakeCategories?.map((elem, index) => <RenderLiCategory id={elem.id} index={index}
+                                                                                        key={index}/>
+            ) : arrCategories?.map((elem, index) => <RenderLiCategory id={elem.id} index={index} key={index}/>)}*/}
+            {arrCategories?.map((elem, index) => <RenderLiCategory id={elem.id} index={index} key={index}/>)}
         </ul>
     )
 }
