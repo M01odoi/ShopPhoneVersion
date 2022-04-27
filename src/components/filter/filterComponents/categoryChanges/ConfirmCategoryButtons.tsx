@@ -1,8 +1,7 @@
-import {editCategory} from "../../../store/reducers/categorySlice";
-import {setIsChangeName, setNewName} from "../../../store/reducers/categoryStateSlice";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import React from "react";
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
+import {editCategory} from "../../../../store/reducers/categorySlice";
+import {setIsChangeName, setNewName} from "../../../../store/reducers/categoryStateSlice";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 interface Props {
     id: number,
@@ -10,19 +9,13 @@ interface Props {
     newName: string,
 }
 
-const EditDeleteCategoryButtons: React.FC<Props> = ({id,dispatch,newName}): JSX.Element => {
-    // const dispatch = useAppDispatch();
-    // console.log(typeof dispatch);
-    // const {
-    //     newName,
-    // } = useAppSelector(state => state.categoryState)
+const ConfirmCategoryButtons: React.FC<Props> = ({id, dispatch, newName}): JSX.Element => {
 
     return (
         <>
             <button
                 className='purple buttonBlackWhite'
                 onClick={() => {
-                    console.log(id,newName);
                     dispatch(editCategory({id, newName}));
                     dispatch(setNewName(''));
                     dispatch(setIsChangeName(false));
@@ -43,4 +36,4 @@ const EditDeleteCategoryButtons: React.FC<Props> = ({id,dispatch,newName}): JSX.
     )
 }
 
-export default EditDeleteCategoryButtons;
+export default ConfirmCategoryButtons;

@@ -12,8 +12,8 @@ interface Props {
 }
 
 const Filter: React.FC<Props> = ({setActive}): JSX.Element => {
-
     const dispatch = useAppDispatch();
+
     useEffect(() => {
         category.then((value: ICategory[]) => {
             dispatch(setCategory(value));

@@ -1,18 +1,19 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import RenderUlCategories from "./RenderUlCategory";
 import cardImg from "../../../img/cardImg.jpg";
-import React, {useEffect} from "react";
+import React from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {
     setActiveCategory,
     setCharLeft,
     setIsActiveChange,
-    setIsAddingCategory, setIsAllActiveCategory,
+    setIsAddingCategory,
+    setIsAllActiveCategory,
     setIsChangeName
 } from "../../../store/reducers/categoryStateSlice";
 import {updateCategory} from "../../../store/reducers/categorySlice";
 
-const SectionOfChoosing = (): JSX.Element => {
+const SectionOfChoosing: React.FC = (): JSX.Element => {
     const arrCategories = useAppSelector(state => state.category.fakeCategories);
     const {
         isAddingCategory,
