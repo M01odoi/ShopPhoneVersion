@@ -8,6 +8,7 @@ interface ISlice {
     isChangeName: boolean,
     charLeft: number,
     isValid: boolean,
+    newName: string,
 }
 
 const initialState: ISlice = {
@@ -18,6 +19,7 @@ const initialState: ISlice = {
     charLeft: 0,
     isValid: true,
     isAllActiveCategory: false,
+    newName: '',
 }
 
 const categoryStateSlice = createSlice({
@@ -45,6 +47,9 @@ const categoryStateSlice = createSlice({
         setIsAllActiveCategory(state, action: PayloadAction<boolean>) {
             state.isAllActiveCategory = action.payload;
         },
+        setNewName(state, action: PayloadAction<string>) {
+            state.newName = action.payload;
+        }
     }
 })
 
@@ -56,6 +61,7 @@ export const {
     setCharLeft,
     setIsValid,
     setIsAllActiveCategory,
+    setNewName,
 } = categoryStateSlice.actions
 
 export default categoryStateSlice.reducer;

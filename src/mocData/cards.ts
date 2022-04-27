@@ -22,7 +22,7 @@ const cards: IProduct[] = [
         name: 'Lorem ipsum dolor sit amet, Lorem amet,',
         cost: 'USD 100.00',
         per: 'item'
-    }
+    },
 ]
 
 export default cards;

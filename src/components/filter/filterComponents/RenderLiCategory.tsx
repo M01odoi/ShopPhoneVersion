@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {deleteCategory, editCategory} from "../../../store/reducers/categorySlice";
-import {setActiveCategory, setCharLeft, setIsChangeName} from "../../../store/reducers/categoryStateSlice";
+import {setActiveCategory, setCharLeft, setIsChangeName, setNewName} from "../../../store/reducers/categoryStateSlice";
+import EditDeleteCategoryButtons from "./EditDeleteCategoryButtons";
 
 interface Props {
     id: number,
@@ -11,7 +12,6 @@ interface Props {
 
 const RenderLiCategory: React.FC<Props> = ({id, index}): JSX.Element => {
     const arrCategories = useAppSelector(state => state.category.fakeCategories);
-
     const {
         activeCategory,
         isAddingCategory,
@@ -19,9 +19,10 @@ const RenderLiCategory: React.FC<Props> = ({id, index}): JSX.Element => {
         isActiveChange,
         charLeft,
         isAllActiveCategory,
+        newName,
     } = useAppSelector(state => state.categoryState)
     const dispatch = useAppDispatch();
-    const [newName, setNewName] = useState('');
+    // const [newName, setNewName] = useState('');
     const ref = React.useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
@@ -38,7 +39,7 @@ const RenderLiCategory: React.FC<Props> = ({id, index}): JSX.Element => {
                                 size={10}
                                 maxLength={20}
                                 ref={ref}
-                                onChange={(e) => setNewName(e.target.value)}
+                                onChange={(e) => dispatch(setNewName(e.target.value))}
                                 value={newName}
                             />
                             <span className='charLeft'>
@@ -73,9 +74,10 @@ const RenderLiCategory: React.FC<Props> = ({id, index}): JSX.Element => {
                                 <button
                                     onClick={() => {
                                         arrCategories &&
-                                        setNewName((arrCategories.filter((elem) => elem.id === id))[0].name);
+                                        dispatch(setNewName((arrCategories.filter((elem) => elem.id === id))[0].name));
                                         dispatch(setIsChangeName(true));
                                         dispatch(setCharLeft(20));
+                                        dispatch(setActiveCategory(id));
                                     }}
                                     disabled={isAddingCategory} className=' buttonBlackWhite'
                                 >
@@ -91,28 +93,8 @@ const RenderLiCategory: React.FC<Props> = ({id, index}): JSX.Element => {
                                     <FontAwesomeIcon icon={'trash'} className='fa-lg'/>
                                 </button>
                             </>
-                        ) : (
-                            <>
-                                <button
-                                    className='purple buttonBlackWhite'
-                                    onClick={() => {
-                                        dispatch(editCategory({id, newName}));
-                                        setNewName('');
-                                        dispatch(setIsChangeName(false));
-                                    }}>
-                                    <FontAwesomeIcon icon={'check'}
-                                                     className=' fa-lg'/>
-                                </button>
-                                <button
-                                    className='buttonBlackWhite'
-                                    onClick={() => {
-                                        setNewName('');
-                                        dispatch(setIsChangeName(false));
-                                    }}>
-                                    <FontAwesomeIcon icon={'x'} className='fa-lg'/>
-                                </button>
-                            </>
-                        )
+                        ) : EditDeleteCategoryButtons({id, dispatch, newName})
+
                     }
                 </>
             }

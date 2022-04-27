@@ -38,7 +38,6 @@ const categorySlice = createSlice({
             (state.fakeCategories = state.fakeCategories.filter((obj) => obj.id !== action.payload));
         },
         editCategory(state, action) {
-            console.log(action.payload);
             state.fakeCategories?.splice(action.payload.id - 1, 1, {
                 id: action.payload.id,
                 name: action.payload.newName

@@ -1,11 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IProduct} from "../../interfaces/IProduct";
 
-interface IProductState {
-    products: IProduct[] | null;
-}
-
-const initialState: IProductState = {products: null};
+const initialState: Array<IProduct> = [];
 
 
 const productSlice = createSlice({
@@ -13,9 +9,7 @@ const productSlice = createSlice({
     initialState,
     reducers: {
         setNewProduct(state, action: PayloadAction<IProduct[]>) {
-            console.log(action.payload);
-            // state.products?.push()
-            state.products = action.payload;
+            action.payload.map((obj: IProduct) => state.push(obj));
         },
     }
 })

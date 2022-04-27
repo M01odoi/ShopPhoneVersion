@@ -9,7 +9,7 @@ import {setNewProduct} from "../../store/reducers/productSlice";
 
 const Cards: React.FC = (): JSX.Element => {
     const dispatch = useAppDispatch();
-    const arrProducts = useAppSelector(state => state.products.products);
+    const arrProducts = useAppSelector(state => state.products);
 
     useEffect(() => {
         products.then((value: IProduct[]) => {
