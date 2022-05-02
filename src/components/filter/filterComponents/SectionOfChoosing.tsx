@@ -42,15 +42,17 @@ const SectionOfChoosing: React.FC = (): JSX.Element => {
   return (
     <section>
       {isActiveChange && (
-        <div className="display editing">Categories editing</div>
+        <div className="display margin-for-editing-mode">
+          Categories editing
+        </div>
       )}
-      <div className={isActiveChange ? "categories editing2" : "categories"}>
+      <div className="categories">
         <h4>Categories</h4>
         <ul>
           {!isActiveChange ? (
             <li>
               <button onClick={() => preventActiveCategoryOnActivateChange()}>
-                <FontAwesomeIcon icon={"pencil"} className="fa-lg" />
+                <FontAwesomeIcon icon="pencil" className="fa-lg" />
               </button>
             </li>
           ) : (
@@ -58,7 +60,7 @@ const SectionOfChoosing: React.FC = (): JSX.Element => {
               <li>
                 <button
                   disabled={isAddingCategory || isChangeName}
-                  className="buttonBlack buttonAll"
+                  className="button-grey-bg"
                   onClick={() =>
                     dispatch(setIsAllActiveCategory(!isAllActiveCategory))
                   }
@@ -71,7 +73,7 @@ const SectionOfChoosing: React.FC = (): JSX.Element => {
                   disabled={isAddingCategory || isChangeName}
                   onClick={() => addingCategory()}
                 >
-                  <FontAwesomeIcon icon={"plus"} className="fa-lg" />
+                  <FontAwesomeIcon icon="plus" className="fa-lg" />
                 </button>
               </li>
               <li>
@@ -80,24 +82,24 @@ const SectionOfChoosing: React.FC = (): JSX.Element => {
                   onClick={() => acceptCategoryAndCloseChanging()}
                   className="purple"
                 >
-                  <FontAwesomeIcon icon={"check"} className="fa-lg" />
+                  <FontAwesomeIcon icon="check" className="fa-lg" />
                 </button>
               </li>
             </>
           )}
           <li>
             <button
-              className="buttonBlack"
+              className="button-grey-bg"
               disabled={isAddingCategory || isChangeName}
             >
-              <FontAwesomeIcon icon={"info"} className="fa-xl" />
+              <FontAwesomeIcon icon="info" className="fa-xl" />
             </button>
           </li>
         </ul>
       </div>
       {arrCategories && <RenderUlCategories />}
       {isActiveChange && (
-        <section className="sectionView">
+        <section className="section-view">
           <h6>category_1</h6>
           <div>
             <img src={cardImg} alt="" />

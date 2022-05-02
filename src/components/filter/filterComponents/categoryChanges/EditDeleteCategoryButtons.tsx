@@ -45,16 +45,16 @@ const EditDeleteCategoryButtons: React.FC<Props> = ({
       <button
         onClick={editNameOfCategory}
         disabled={isAddingCategory}
-        className=" buttonBlackWhite"
+        className=" button-black-white"
       >
-        <FontAwesomeIcon icon={"pencil"} className="fa-lg" />
+        <FontAwesomeIcon icon="pencil" className="fa-lg" />
       </button>
       <button
         onClick={deleteOneCategory}
         disabled={isAddingCategory}
-        className="buttonBlackWhite"
+        className="button-black-white"
       >
-        <FontAwesomeIcon icon={"trash"} className="fa-lg" />
+        <FontAwesomeIcon icon="trash" className="fa-lg" />
       </button>
     </>
   );

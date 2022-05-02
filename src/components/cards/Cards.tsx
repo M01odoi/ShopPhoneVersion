@@ -33,10 +33,10 @@ const Cards: React.FC = (): JSX.Element => {
   };
 
   return (
-    <section>
+    <section className="list-of-cards">
       <StackGrid columnWidth={170} gutterHeight={5}>
         {renderCards()}
-        <button className="ticket lastCard">
+        <button className="ticket last-card">
           <FontAwesomeIcon icon={"plus-circle"} className="fa-3x" />
           <p>
             Tap to add <br /> a new item

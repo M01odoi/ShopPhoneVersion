@@ -9,6 +9,7 @@ interface ISlice {
   charLeft: number;
   isValid: boolean;
   newName: string;
+  isShowModal: boolean;
 }
 
 const initialState: ISlice = {
@@ -20,6 +21,7 @@ const initialState: ISlice = {
   isValid: true,
   isAllActiveCategory: false,
   newName: "",
+  isShowModal: false,
 };
 
 const categoryStateSlice = createSlice({
@@ -50,6 +52,9 @@ const categoryStateSlice = createSlice({
     setNewName(state, action: PayloadAction<string>) {
       state.newName = action.payload;
     },
+    setIsShowModal(state, action: PayloadAction<boolean>) {
+      state.isShowModal = action.payload;
+    },
   },
 });
 
@@ -62,6 +67,7 @@ export const {
   setIsValid,
   setIsAllActiveCategory,
   setNewName,
+  setIsShowModal,
 } = categoryStateSlice.actions;
 
 export default categoryStateSlice.reducer;

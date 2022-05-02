@@ -7,11 +7,7 @@ import { ICategory } from "../../interfaces/ICategory";
 import SectionOfChoosing from "./filterComponents/SectionOfChoosing";
 import FilterHeader from "./filterComponents/FilterHeader";
 
-interface Props {
-  setActive: Function;
-}
-
-const Filter: React.FC<Props> = ({ setActive }): JSX.Element => {
+const Filter: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -22,7 +18,7 @@ const Filter: React.FC<Props> = ({ setActive }): JSX.Element => {
 
   return (
     <>
-      <FilterHeader setActive={setActive} />
+      <FilterHeader />
       <SectionOfChoosing />
     </>
   );

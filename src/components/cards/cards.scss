@@ -1,4 +1,8 @@
-.lastCard {
+.list-of-cards div {
+  z-index: 1;
+}
+
+.last-card {
   background: black;
   text-align: center;
   display: flex;
@@ -10,7 +14,7 @@
   cursor: pointer;
 }
 
-.lastCard:active {
+.last-card:active {
   background: #9b9b9b;
 }
 

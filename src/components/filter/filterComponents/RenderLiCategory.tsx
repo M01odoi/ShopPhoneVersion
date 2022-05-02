@@ -29,7 +29,6 @@ const RenderLiCategory: React.FC<Props> = ({ id, index }): JSX.Element => {
   useEffect(() => {
     ref.current?.select();
   }, [isChangeName]);
-
   return (
     <li key={id}>
       {arrCategories &&
@@ -38,9 +37,11 @@ const RenderLiCategory: React.FC<Props> = ({ id, index }): JSX.Element => {
         ) : (
           <button
             className={
-              activeCategory === id && isActiveChange && !isAddingCategory
-                ? "purpleBorder disabledButNotOpacity"
-                : "disabledButNotOpacity"
+              (activeCategory === id && isActiveChange && !isAddingCategory) ||
+              (isAllActiveCategory &&
+                arrCategories[arrCategories.length - 1].id !== id)
+                ? "purple-border disabled-but-not-opacity"
+                : "disabled-but-not-opacity"
             }
             onClick={() => dispatch(setActiveCategory(id))}
             disabled={isChangeName}

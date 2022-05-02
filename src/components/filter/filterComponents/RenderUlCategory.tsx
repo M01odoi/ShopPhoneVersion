@@ -33,7 +33,7 @@ const RenderUlCategories: React.FC = (): JSX.Element => {
   }, [isAddingCategory]);
 
   return (
-    <ul className="categoriesChoose">
+    <ul className="categories-choose">
       {!isActiveChange && (
         <li>
           <button className="purple">All</button>
@@ -41,9 +41,9 @@ const RenderUlCategories: React.FC = (): JSX.Element => {
       )}
       {isAddingCategory && (
         <li>
-          <div className="flexColumn">
+          <div className="flex-column">
             <input
-              className="purpleBorder"
+              className="purple-border"
               value={newCategory}
               type="text"
               maxLength={20}
@@ -53,7 +53,7 @@ const RenderUlCategories: React.FC = (): JSX.Element => {
                 setNewCategory(e.target.value);
               }}
             />
-            <span className={isValid ? "charLeft" : "incorrectName"}>
+            <span className={isValid ? "char-left" : "incorrectName"}>
               {isValid
                 ? charLeft - newCategory.length >= 0
                   ? `${charLeft - newCategory.length} char left`
@@ -63,15 +63,15 @@ const RenderUlCategories: React.FC = (): JSX.Element => {
           </div>
           <button
             onClick={() => validationCategory()}
-            className={"buttonBlackWhite purple"}
+            className={"button-black-white purple"}
           >
-            <FontAwesomeIcon icon={"check"} className="fa-lg" />
+            <FontAwesomeIcon icon="check" className="fa-lg" />
           </button>
           <button
             onClick={() => dispatch(setIsAddingCategory(false))}
-            className={"buttonBlackWhite"}
+            className={"button-black-white"}
           >
-            <FontAwesomeIcon icon={"x"} className="fa-lg" />
+            <FontAwesomeIcon icon="x" className="fa-lg" />
           </button>
         </li>
       )}

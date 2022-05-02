@@ -15,7 +15,7 @@ const ChangeCategoryInput: React.FC<Props> = ({
   charLeft,
 }): JSX.Element => {
   return (
-    <div className="flexColumn">
+    <div className="flex-column">
       <input
         type="text"
         size={10}
@@ -24,7 +24,7 @@ const ChangeCategoryInput: React.FC<Props> = ({
         onChange={(e) => dispatch(setNewName(e.target.value))}
         value={newName}
       />
-      <span className="charLeft">
+      <span className="char-left">
         {charLeft - newName.length >= 0
           ? `${charLeft - newName.length} char left`
           : "Too mach"}

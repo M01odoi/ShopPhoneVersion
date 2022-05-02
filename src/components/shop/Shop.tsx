@@ -1,5 +1,5 @@
 import "./shop.scss";
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -16,8 +16,9 @@ import {
   faX,
 } from "@fortawesome/free-solid-svg-icons";
 import Cards from "../cards/Cards";
-import Modal from "../modal/Modal";
 import Searching from "./shopComponents/Searching";
+import OpenModal from "./shopComponents/OpenModal";
+import { useAppSelector } from "../../hooks/redux";
 
 library.add(
   faBars,
@@ -34,7 +35,7 @@ library.add(
 );
 
 const Shop: React.FC = (): JSX.Element => {
-  const [isShowModal, setIsShowModal] = useState(false);
+  const { isShowModal } = useAppSelector((state) => state.categoryState);
 
   return (
     <>
@@ -45,9 +46,11 @@ const Shop: React.FC = (): JSX.Element => {
         </button>
       </header>
       <main>
-        <Searching setIsShowModal={setIsShowModal} />
+        <section className={isShowModal ? "" : "search"}>
+          <Searching />
+          <OpenModal />
+        </section>
         <Cards />
-        {isShowModal && <Modal setActive={setIsShowModal} />}
       </main>
     </>
   );

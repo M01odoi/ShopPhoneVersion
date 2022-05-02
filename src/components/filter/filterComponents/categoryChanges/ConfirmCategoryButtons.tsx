@@ -35,15 +35,15 @@ const ConfirmCategoryButtons: React.FC<Props> = ({
     <>
       <button
         onClick={editCategoryAndCloseChangeName}
-        className="purple buttonBlackWhite"
+        className="purple button-black-white"
       >
-        <FontAwesomeIcon icon={"check"} className=" fa-lg" />
+        <FontAwesomeIcon icon="check" className=" fa-lg" />
       </button>
       <button
         onClick={notEditCategoryAndCloseChangeName}
-        className="buttonBlackWhite"
+        className="button-black-white"
       >
-        <FontAwesomeIcon icon={"x"} className="fa-lg" />
+        <FontAwesomeIcon icon="x" className="fa-lg" />
       </button>
     </>
   );

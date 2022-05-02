@@ -2,14 +2,10 @@ import "./modal.scss";
 import Filter from "../filter/Filter";
 import React from "react";
 
-interface Props {
-  setActive: Function;
-}
-
-const Modal: React.FC<Props> = ({ setActive }): JSX.Element => {
+const Modal: React.FC = (): JSX.Element => {
   return (
-    <div className="modalContent">
-      <Filter setActive={setActive} />
+    <div className="modal-content">
+      <Filter />
     </div>
   );
 };

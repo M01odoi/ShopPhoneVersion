@@ -6,14 +6,11 @@ import {
   setIsAddingCategory,
   setIsAllActiveCategory,
   setIsChangeName,
+  setIsShowModal,
 } from "../../../store/reducers/categoryStateSlice";
 import { updateFakeCategory } from "../../../store/reducers/categorySlice";
 
-interface Props {
-  setActive: Function;
-}
-
-const FilterHeader: React.FC<Props> = ({ setActive }): JSX.Element => {
+const FilterHeader: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { isActiveChange } = useAppSelector((state) => state.categoryState);
 
@@ -26,10 +23,12 @@ const FilterHeader: React.FC<Props> = ({ setActive }): JSX.Element => {
   };
 
   return (
-    <div className="filterHeader">
+    <div className="filter-header">
       <button
-        onClick={() => (isActiveChange ? notEdit() : setActive(false))}
-        className={isActiveChange ? "purpleColor buttonBack" : "buttonBack"}
+        onClick={() =>
+          isActiveChange ? notEdit() : dispatch(setIsShowModal(false))
+        }
+        className={isActiveChange ? "purple-color button-w31" : "button-w31"}
       >
         <FontAwesomeIcon
           icon={isActiveChange ? "x" : "arrow-left"}

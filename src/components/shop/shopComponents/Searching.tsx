@@ -1,39 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { FormEvent, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
-interface Props {
-  setIsShowModal: Function;
-}
-
-const Searching: React.FC<Props> = ({ setIsShowModal }): JSX.Element => {
+const Searching: React.FC = (): JSX.Element => {
   const [searchingName, setSearchingName] = useState("");
 
-  const sendSearchData: React.MouseEventHandler<
-    HTMLButtonElement
-  > = (): void => {
+  const sendSearchData: React.MouseEventHandler<HTMLButtonElement> = (
+    e
+  ): void => {
+    e.preventDefault();
     console.log(searchingName);
   };
 
   return (
-    <section className="search">
-      <form
-        onSubmit={(e: FormEvent<HTMLElement>) => e.preventDefault()}
-        className="searching"
-      >
-        <input
-          type={"text"}
-          value={searchingName}
-          onChange={(e) => setSearchingName(e.target.value)}
-          placeholder="Search"
-        />
-        <button onClick={sendSearchData} className="buttonSearch">
-          <FontAwesomeIcon icon="search" />
-        </button>
-      </form>
-      <button className="buttonSliders" onClick={() => setIsShowModal(true)}>
-        <FontAwesomeIcon icon="sliders-h" className="fa-xl" />
+    <form className="searching">
+      <input
+        type={"text"}
+        value={searchingName}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setSearchingName(e.target.value)
+        }
+        placeholder="Search"
+      />
+      <button onClick={(e) => sendSearchData(e)} className="button-search">
+        <FontAwesomeIcon icon="search" />
       </button>
-    </section>
+    </form>
   );
 };
 
