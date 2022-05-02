@@ -1,10 +1,8 @@
-import React from 'react';
+import React from "react";
 import Shop from "./components/shop/Shop";
 
 const App = () => {
-    return (
-        <Shop/>
-    );
-}
+  return <Shop />;
+};
 
 export default App;
