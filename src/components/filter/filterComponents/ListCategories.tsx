@@ -2,7 +2,7 @@ import RenderUlCategories from "./renderCategories/RenderUlCategory";
 import cardImg from "../../../img/cardImg.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { useAppSelector } from "../../../hooks/redux";
 
 const ListCategories = () => {
   const arrCategories = useAppSelector(

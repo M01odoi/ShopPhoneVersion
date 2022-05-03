@@ -42,10 +42,14 @@ const categorySlice = createSlice({
         ));
     },
     editCategory(state, action) {
-      state.fakeCategories?.splice(action.payload.id - 1, 1, {
-        id: action.payload.id,
-        name: action.payload.newName,
-      });
+      state.fakeCategories?.splice(
+        state.fakeCategories?.findIndex((obj) => obj.id === action.payload.id),
+        1,
+        {
+          id: action.payload.id,
+          name: action.payload.newName,
+        }
+      );
     },
   },
 });
