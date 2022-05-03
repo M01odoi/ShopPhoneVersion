@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { setIsShowModal } from "../../../store/reducers/categoryStateSlice";
 import Filter from "../../filter/Filter";
 
-const OpeningButtonPopup: React.FC = (): JSX.Element => {
+const BtnPopupFilter: React.FC = (): JSX.Element => {
   const { isShowModal } = useAppSelector((state) => state.categoryState);
   const dispatch = useAppDispatch();
 
@@ -21,4 +21,4 @@ const OpeningButtonPopup: React.FC = (): JSX.Element => {
   );
 };
 
-export default OpeningButtonPopup;
+export default BtnPopupFilter;
