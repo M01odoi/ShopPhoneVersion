@@ -17,7 +17,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ListProducts from "../listProducts/ListProducts";
 import Searching from "./shopComponents/Searching";
-import BtnPopupFilter from "./shopComponents/BtnPopupFilter";
+import BtnPopupFilterAndPopup from "./shopComponents/BtnPopupFilterAndPopup";
 
 library.add(
   faBars,
@@ -45,7 +45,7 @@ const Shop: React.FC = (): JSX.Element => {
       <main>
         <section className="search">
           <Searching />
-          <BtnPopupFilter />
+          <BtnPopupFilterAndPopup />
         </section>
         <ListProducts />
       </main>

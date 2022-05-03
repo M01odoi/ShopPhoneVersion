@@ -9,7 +9,6 @@ const ListCategories = () => {
     (state) => state.category.fakeCategories
   );
   const { isActiveChange } = useAppSelector((state) => state.categoryState);
-  // const dispatch = useAppDispatch();
 
   return (
     <>

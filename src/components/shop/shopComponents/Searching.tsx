@@ -9,6 +9,7 @@ const Searching: React.FC = (): JSX.Element => {
   ): void => {
     e.preventDefault();
     console.log(searchingName);
+    setSearchingName("");
   };
 
   return (

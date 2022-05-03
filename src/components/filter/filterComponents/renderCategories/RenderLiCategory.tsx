@@ -25,6 +25,10 @@ const RenderLiCategory: React.FC<Props> = ({ id, index }): JSX.Element => {
   } = useAppSelector((state) => state.categoryState);
   const dispatch = useAppDispatch();
   const ref = React.useRef<HTMLInputElement | null>(null);
+  const isSelectAllCategory: boolean | null =
+    isAllActiveCategory &&
+    arrCategories &&
+    arrCategories[arrCategories.length - 1].id !== id;
 
   useEffect(() => {
     ref.current?.select();
@@ -38,17 +42,15 @@ const RenderLiCategory: React.FC<Props> = ({ id, index }): JSX.Element => {
           <button
             className={
               (activeCategory === id && isActiveChange && !isAddingCategory) ||
-              (isAllActiveCategory &&
-                arrCategories[arrCategories.length - 1].id !== id)
+              isSelectAllCategory
                 ? "purple-border disabled-but-not-opacity"
                 : "disabled-but-not-opacity"
             }
             onClick={() => dispatch(setActiveCategory(id))}
             disabled={isChangeName}
           >
-            {activeCategory === id && activeCategory && isActiveChange && (
-              <span>{index + 1}</span>
-            )}
+            {((activeCategory === id && isActiveChange) ||
+              isSelectAllCategory) && <span>{index + 1}</span>}
             {" " + arrCategories.filter((elem) => elem.id === id)[0].name}
           </button>
         ))}

@@ -6,6 +6,7 @@ import { setNewProduct } from "../../store/reducers/productSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IProduct } from "../../interfaces/IProduct";
 import "./listProducts.scss";
+import CreateProductCard from "./listProductsComponents/CreateProductCard";
 
 const ListProducts: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -18,18 +19,7 @@ const ListProducts: React.FC = (): JSX.Element => {
   }, []);
 
   const renderCards: Function = (): JSX.Element[] => {
-    return arrProducts?.map((arr: IProduct) => (
-      <section className="ticket" key={arr.id}>
-        <div className="img">
-          <img src={arr.img} alt="" />
-        </div>
-        <h4>{arr.name}</h4>
-        <p>
-          {arr.cost}
-          <span className="item"> {" " + arr.per}</span>
-        </p>
-      </section>
-    ));
+    return arrProducts?.map((obj: IProduct) => <CreateProductCard obj={obj} />);
   };
 
   return (

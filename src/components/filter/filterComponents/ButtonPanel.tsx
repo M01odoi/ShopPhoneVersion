@@ -56,9 +56,10 @@ const ButtonPanel: React.FC = (): JSX.Element => {
                 <button
                   disabled={isAddingCategory || isChangeName}
                   className="button-grey-bg"
-                  onClick={() =>
-                    dispatch(setIsAllActiveCategory(!isAllActiveCategory))
-                  }
+                  onClick={() => {
+                    dispatch(setActiveCategory(1));
+                    dispatch(setIsAllActiveCategory(!isAllActiveCategory));
+                  }}
                 >
                   All
                 </button>
