@@ -18,14 +18,12 @@ const ListProducts: React.FC = (): JSX.Element => {
     });
   }, []);
 
-  const renderCards: Function = (): JSX.Element[] => {
-    return arrProducts?.map((obj: IProduct) => <CreateProductCard obj={obj} />);
-  };
-
   return (
     <section className="list-of-cards">
       <StackGrid columnWidth={170} gutterHeight={5}>
-        {renderCards()}
+        {arrProducts?.map((obj: IProduct) => (
+          <CreateProductCard obj={obj} key={obj.id} />
+        ))}
         <button className="ticket last-card">
           <FontAwesomeIcon icon={"plus-circle"} className="fa-3x" />
           <p>
