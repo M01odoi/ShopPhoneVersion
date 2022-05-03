@@ -18,6 +18,7 @@ const categorySlice = createSlice({
     },
 
     updateCategory(state) {
+      state.fakeCategories?.forEach((obj, index) => (obj.id = index + 1));
       state.categories = JSON.parse(JSON.stringify(state.fakeCategories));
     },
 
@@ -26,12 +27,13 @@ const categorySlice = createSlice({
     },
 
     addNewCategory(state, action) {
+      console.log();
       state.fakeCategories?.splice(state.fakeCategories.length - 1, 1, {
-        id: state.fakeCategories.length,
+        id: state.fakeCategories[state.fakeCategories.length - 1].id,
         name: action.payload,
       });
       state.fakeCategories?.push({
-        id: state.fakeCategories.length + 1,
+        id: state.fakeCategories[state.fakeCategories.length - 1].id + 1,
         name: "Uncategorised",
       });
     },
