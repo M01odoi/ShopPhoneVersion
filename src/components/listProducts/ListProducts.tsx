@@ -5,9 +5,9 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { setNewProduct } from "../../store/reducers/productSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IProduct } from "../../interfaces/IProduct";
-import "./cards.scss";
+import "./listProducts.scss";
 
-const Cards: React.FC = (): JSX.Element => {
+const ListProducts: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const arrProducts = useAppSelector((state) => state.products);
 
@@ -47,4 +47,4 @@ const Cards: React.FC = (): JSX.Element => {
   );
 };
 
-export default Cards;
+export default ListProducts;

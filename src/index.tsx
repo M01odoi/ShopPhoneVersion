@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 
 ReactDOM.render(
-  // <React.StrictMode> don`t support animation in Cards component
+  // <React.StrictMode> don`t support animation in ListProducts component
   <Provider store={store}>
     <App />
   </Provider>,

@@ -1,12 +1,13 @@
 body {
   margin: 0 auto;
-  border: 1px solid black;
   width: 375px;
   height: 100vh;
+
   ul {
     list-style: none;
     padding: 0;
   }
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -14,10 +15,12 @@ body {
     width: 87%;
     align-content: center;
     margin: 0 auto;
+
     h1 {
       margin: 22px 0;
       font-size: 2rem;
     }
+
     button {
       background: none;
       border: none;
@@ -30,16 +33,19 @@ body {
     justify-content: space-between;
     width: 87%;
     margin: 0 auto;
+
     .button-search {
       border: none;
       background: none;
       cursor: pointer;
     }
+
     .button-open-modal {
       border-radius: 20%;
       border: none;
       cursor: pointer;
     }
+
     .searching {
       display: flex;
       justify-content: space-between;

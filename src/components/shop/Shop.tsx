@@ -15,10 +15,9 @@ import {
   faTrash,
   faX,
 } from "@fortawesome/free-solid-svg-icons";
-import Cards from "../cards/Cards";
+import ListProducts from "../listProducts/ListProducts";
 import Searching from "./shopComponents/Searching";
-import OpenModal from "./shopComponents/OpenModal";
-import { useAppSelector } from "../../hooks/redux";
+import OpeningButtonPopup from "./shopComponents/OpeningButtonPopup";
 
 library.add(
   faBars,
@@ -35,8 +34,6 @@ library.add(
 );
 
 const Shop: React.FC = (): JSX.Element => {
-  const { isShowModal } = useAppSelector((state) => state.categoryState);
-
   return (
     <>
       <header className="header">
@@ -46,11 +43,11 @@ const Shop: React.FC = (): JSX.Element => {
         </button>
       </header>
       <main>
-        <section className={isShowModal ? "" : "search"}>
+        <section className="search">
           <Searching />
-          <OpenModal />
+          <OpeningButtonPopup />
         </section>
-        <Cards />
+        <ListProducts />
       </main>
     </>
   );

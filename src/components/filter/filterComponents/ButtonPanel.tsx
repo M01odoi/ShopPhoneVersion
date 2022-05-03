@@ -1,6 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import RenderUlCategories from "./RenderUlCategory";
-import cardImg from "../../../img/cardImg.jpg";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import {
@@ -13,10 +11,7 @@ import {
 } from "../../../store/reducers/categoryStateSlice";
 import { updateCategory } from "../../../store/reducers/categorySlice";
 
-const SectionOfChoosing: React.FC = (): JSX.Element => {
-  const arrCategories = useAppSelector(
-    (state) => state.category.fakeCategories
-  );
+const ButtonPanel: React.FC = (): JSX.Element => {
   const {
     isAddingCategory,
     isChangeName,
@@ -40,7 +35,7 @@ const SectionOfChoosing: React.FC = (): JSX.Element => {
   };
 
   return (
-    <section>
+    <>
       {isActiveChange && (
         <div className="display margin-for-editing-mode">
           Categories editing
@@ -97,21 +92,8 @@ const SectionOfChoosing: React.FC = (): JSX.Element => {
           </li>
         </ul>
       </div>
-      {arrCategories && <RenderUlCategories />}
-      {isActiveChange && (
-        <section className="section-view">
-          <h6>category_1</h6>
-          <div>
-            <img src={cardImg} alt="" />
-            <p>Lorem ipsum dolor sit amet,</p>
-            <button>
-              <FontAwesomeIcon icon="bars" className="fa-xl" />
-            </button>
-          </div>
-        </section>
-      )}
-    </section>
+    </>
   );
 };
 
-export default SectionOfChoosing;
+export default ButtonPanel;

@@ -1,27 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import Modal from "../../modal/Modal";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { setIsShowModal } from "../../../store/reducers/categoryStateSlice";
+import Filter from "../../filter/Filter";
 
-const OpenModal: React.FC = (): JSX.Element => {
+const OpeningButtonPopup: React.FC = (): JSX.Element => {
   const { isShowModal } = useAppSelector((state) => state.categoryState);
   const dispatch = useAppDispatch();
 
   return (
     <>
-      {isShowModal ? (
-        <Modal />
-      ) : (
-        <button
-          className="button-open-modal"
-          onClick={() => dispatch(setIsShowModal(true))}
-        >
-          <FontAwesomeIcon icon="sliders-h" className="fa-xl" />
-        </button>
-      )}
+      <button
+        className="button-open-modal"
+        onClick={() => dispatch(setIsShowModal(true))}
+      >
+        <FontAwesomeIcon icon="sliders-h" className="fa-xl" />
+      </button>
+      {isShowModal && <Filter />}
     </>
   );
 };
 
-export default OpenModal;
+export default OpeningButtonPopup;

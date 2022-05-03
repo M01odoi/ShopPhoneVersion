@@ -10,7 +10,7 @@ import {
 } from "../../../store/reducers/categoryStateSlice";
 import { updateFakeCategory } from "../../../store/reducers/categorySlice";
 
-const FilterHeader: React.FC = (): JSX.Element => {
+const Header: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { isActiveChange } = useAppSelector((state) => state.categoryState);
 
@@ -40,4 +40,4 @@ const FilterHeader: React.FC = (): JSX.Element => {
   );
 };
 
-export default FilterHeader;
+export default Header;

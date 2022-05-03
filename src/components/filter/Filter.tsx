@@ -4,8 +4,10 @@ import { useAppDispatch } from "../../hooks/redux";
 import { setCategory } from "../../store/reducers/categorySlice";
 import category from "../../api/category";
 import { ICategory } from "../../interfaces/ICategory";
-import SectionOfChoosing from "./filterComponents/SectionOfChoosing";
-import FilterHeader from "./filterComponents/FilterHeader";
+import ButtonPanel from "./filterComponents/ButtonPanel";
+import Header from "./filterComponents/Header";
+import Modal from "../modal/Modal";
+import ListCategories from "./filterComponents/ListCategories";
 
 const Filter: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -18,8 +20,13 @@ const Filter: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <FilterHeader />
-      <SectionOfChoosing />
+      <Modal>
+        <Header />
+        <section>
+          <ButtonPanel />
+          <ListCategories />
+        </section>
+      </Modal>
     </>
   );
 };

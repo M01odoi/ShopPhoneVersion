@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { setActiveCategory } from "../../../store/reducers/categoryStateSlice";
-import EditDeleteCategoryButtons from "./categoryChanges/EditDeleteCategoryButtons";
-import ConfirmCategoryButtons from "./categoryChanges/ConfirmCategoryButtons";
-import ChangeCategoryInput from "./categoryChanges/ChangeCategoryInput";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
+import { setActiveCategory } from "../../../../store/reducers/categoryStateSlice";
+import EditDeleteCategoryButtons from "../categoryChanges/EditDeleteCategoryButtons";
+import ConfirmCategoryButtons from "../categoryChanges/ConfirmCategoryButtons";
+import ChangeCategoryInput from "../categoryChanges/ChangeCategoryInput";
 
 interface Props {
   id: number;

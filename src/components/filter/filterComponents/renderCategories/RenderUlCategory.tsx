@@ -1,13 +1,13 @@
-import { addNewCategory } from "../../../store/reducers/categorySlice";
+import { addNewCategory } from "../../../../store/reducers/categorySlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import RenderLiCategory from "./RenderLiCategory";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
 import {
   setIsAddingCategory,
   setIsValid,
-} from "../../../store/reducers/categoryStateSlice";
-import isValidation from "../isValidation";
+} from "../../../../store/reducers/categoryStateSlice";
+import isValidation from "../../isValidation";
 
 const RenderUlCategories: React.FC = (): JSX.Element => {
   const arrCategories = useAppSelector(
