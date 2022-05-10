@@ -1,18 +1,8 @@
-import { addNewCategory } from "../../../../store/reducers/categorySlice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, {
-  ChangeEvent,
-  ChangeEventHandler,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import {addNewCategory} from "../../../../store/reducers/categorySlice";
+import React, {ChangeEvent, ChangeEventHandler, MouseEventHandler, useEffect, useState,} from "react";
 import RenderLiCategory from "./RenderLiCategory";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
-import {
-  setIsAddingCategory,
-  setIsValid,
-} from "../../../../store/reducers/categoryStateSlice";
+import {useAppDispatch, useAppSelector} from "../../../../hooks/redux";
+import {setIsAddingCategory, setIsValid,} from "../../../../store/reducers/categoryStateSlice";
 import isValidation from "../../isValidation";
 import AddOrChangeCategoryInput from "../categoryChanges/AddOrChangeCategoryInput";
 import ConfirmCategoryButtons from "../categoryChanges/ConfirmCategoryButtons";
