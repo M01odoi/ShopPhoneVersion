@@ -14,6 +14,7 @@ interface Props {
   dispatch: Function;
   arrCategories: ICategory[] | null;
   isAddingCategory: boolean;
+  isChangeName: boolean;
 }
 
 const EditDeleteCategoryButtons: React.FC<Props> = ({
@@ -21,6 +22,7 @@ const EditDeleteCategoryButtons: React.FC<Props> = ({
   dispatch,
   arrCategories,
   isAddingCategory,
+  isChangeName,
 }): JSX.Element => {
   const editNameOfCategory: React.MouseEventHandler<
     HTMLButtonElement
@@ -44,14 +46,14 @@ const EditDeleteCategoryButtons: React.FC<Props> = ({
     <>
       <button
         onClick={editNameOfCategory}
-        disabled={isAddingCategory}
+        disabled={isAddingCategory || isChangeName}
         className=" button-black-white"
       >
         <FontAwesomeIcon icon="pencil" className="fa-lg" />
       </button>
       <button
         onClick={deleteOneCategory}
-        disabled={isAddingCategory}
+        disabled={isAddingCategory || isChangeName}
         className="button-black-white"
       >
         <FontAwesomeIcon icon="trash" className="fa-lg" />

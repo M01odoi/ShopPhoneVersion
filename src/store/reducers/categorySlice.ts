@@ -27,7 +27,6 @@ const categorySlice = createSlice({
     },
 
     addNewCategory(state, action) {
-      console.log();
       state.fakeCategories?.splice(state.fakeCategories.length - 1, 1, {
         id: state.fakeCategories[state.fakeCategories.length - 1].id,
         name: action.payload,

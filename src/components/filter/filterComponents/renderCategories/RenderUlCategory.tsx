@@ -1,6 +1,12 @@
 import { addNewCategory } from "../../../../store/reducers/categorySlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import RenderLiCategory from "./RenderLiCategory";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
 import {
@@ -8,6 +14,8 @@ import {
   setIsValid,
 } from "../../../../store/reducers/categoryStateSlice";
 import isValidation from "../../isValidation";
+import AddOrChangeCategoryInput from "../categoryChanges/AddOrChangeCategoryInput";
+import ConfirmCategoryButtons from "../categoryChanges/ConfirmCategoryButtons";
 
 const RenderUlCategories: React.FC = (): JSX.Element => {
   const arrCategories = useAppSelector(
@@ -19,7 +27,7 @@ const RenderUlCategories: React.FC = (): JSX.Element => {
     useAppSelector((state) => state.categoryState);
   const ref = React.useRef<HTMLInputElement | null>(null);
 
-  const validationCategory: Function = (): void => {
+  const validationCategory: MouseEventHandler<HTMLButtonElement> = (): void => {
     if (isValidation(newCategory)) {
       dispatch(addNewCategory(newCategory));
       setNewCategory("New Category");
@@ -28,6 +36,22 @@ const RenderUlCategories: React.FC = (): JSX.Element => {
       dispatch(setIsValid(false));
     }
   };
+
+  const notConfirmAddingCategory: MouseEventHandler<
+    HTMLButtonElement
+  > = (): void => {
+    dispatch(setIsValid(true));
+    dispatch(setIsAddingCategory(false));
+    setNewCategory("New Category");
+  };
+
+  const onChangeAddingName: ChangeEventHandler<HTMLInputElement> = (
+    e: ChangeEvent<HTMLInputElement>
+  ): void => {
+    dispatch(setIsValid(true));
+    setNewCategory(e.target.value);
+  };
+
   useEffect(() => {
     ref.current?.select();
   }, [isAddingCategory]);
@@ -41,42 +65,26 @@ const RenderUlCategories: React.FC = (): JSX.Element => {
       )}
       {isAddingCategory && (
         <li>
-          <div className="flex-column">
-            <input
-              className="purple-border"
-              value={newCategory}
-              type="text"
-              maxLength={20}
-              ref={ref}
-              onChange={(e) => {
-                dispatch(setIsValid(true));
-                setNewCategory(e.target.value);
-              }}
-            />
-            <span className={isValid ? "char-left" : "incorrectName"}>
-              {isValid
-                ? charLeft - newCategory.length >= 0
-                  ? `${charLeft - newCategory.length} char left`
-                  : "Too mach"
-                : "Incorrect name"}
-            </span>
-          </div>
-          <button
-            onClick={() => validationCategory()}
-            className={"button-black-white purple"}
-          >
-            <FontAwesomeIcon icon="check" className="fa-lg" />
-          </button>
-          <button
-            onClick={() => dispatch(setIsAddingCategory(false))}
-            className={"button-black-white"}
-          >
-            <FontAwesomeIcon icon="x" className="fa-lg" />
-          </button>
+          {AddOrChangeCategoryInput({
+            newName: newCategory,
+            ref,
+            charLeft,
+            isValid,
+            onChange: onChangeAddingName,
+          })}
+          {ConfirmCategoryButtons({
+            onConfirmClick: validationCategory,
+            onRefuseClick: notConfirmAddingCategory,
+          })}
         </li>
       )}
       {arrCategories?.map((elem, index) => (
-        <RenderLiCategory id={elem.id} index={index} key={index} />
+        <RenderLiCategory
+          id={elem.id}
+          name={elem.name}
+          index={index}
+          key={index}
+        />
       ))}
     </ul>
   );

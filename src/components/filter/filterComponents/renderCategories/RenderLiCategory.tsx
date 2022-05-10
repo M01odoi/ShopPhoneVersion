@@ -1,16 +1,26 @@
-import React, { useEffect } from "react";
+import React, { ChangeEvent, ChangeEventHandler, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
-import { setActiveCategory } from "../../../../store/reducers/categoryStateSlice";
+import {
+  setActiveCategory,
+  setIsChangeName,
+  setNewName,
+} from "../../../../store/reducers/categoryStateSlice";
 import EditDeleteCategoryButtons from "../categoryChanges/EditDeleteCategoryButtons";
 import ConfirmCategoryButtons from "../categoryChanges/ConfirmCategoryButtons";
-import ChangeCategoryInput from "../categoryChanges/ChangeCategoryInput";
+import AddOrChangeCategoryInput from "../categoryChanges/AddOrChangeCategoryInput";
+import { editCategory } from "../../../../store/reducers/categorySlice";
 
 interface Props {
   id: number;
+  name: string;
   index: number;
 }
 
-const RenderLiCategory: React.FC<Props> = ({ id, index }): JSX.Element => {
+const RenderLiCategory: React.FC<Props> = ({
+  id,
+  name,
+  index,
+}): JSX.Element => {
   const arrCategories = useAppSelector(
     (state) => state.category.fakeCategories
   );
@@ -30,14 +40,39 @@ const RenderLiCategory: React.FC<Props> = ({ id, index }): JSX.Element => {
     arrCategories &&
     arrCategories[arrCategories.length - 1].id !== id;
 
+  const onChangeChangingName: ChangeEventHandler<HTMLInputElement> = (
+    e: ChangeEvent<HTMLInputElement>
+  ): void => {
+    dispatch(setNewName(e.target.value));
+  };
+  const editCategoryAndCloseChangeName: React.MouseEventHandler<
+    HTMLButtonElement
+  > = (): void => {
+    dispatch(editCategory({ id, newName }));
+    dispatch(setNewName(""));
+    dispatch(setIsChangeName(false));
+  };
+  const notEditCategoryAndCloseChangeName: React.MouseEventHandler<
+    HTMLButtonElement
+  > = (): void => {
+    dispatch(setNewName(""));
+    dispatch(setIsChangeName(false));
+  };
+
   useEffect(() => {
     ref.current?.select();
   }, [isChangeName]);
+
   return (
-    <li key={id}>
+    <li>
       {arrCategories &&
         (isChangeName && activeCategory === id ? (
-          ChangeCategoryInput({ newName, dispatch, charLeft, ref })
+          AddOrChangeCategoryInput({
+            newName,
+            onChange: onChangeChangingName,
+            charLeft,
+            ref,
+          })
         ) : (
           <button
             className={
@@ -46,26 +81,35 @@ const RenderLiCategory: React.FC<Props> = ({ id, index }): JSX.Element => {
                 ? "purple-border disabled-but-not-opacity"
                 : "disabled-but-not-opacity"
             }
-            onClick={() => dispatch(setActiveCategory(id))}
+            onClick={() =>
+              !(
+                isAllActiveCategory &&
+                id === arrCategories[arrCategories.length - 1].id
+              ) && dispatch(setActiveCategory(id))
+            }
             disabled={isChangeName}
           >
             {((activeCategory === id && isActiveChange) ||
               isSelectAllCategory) && <span>{index + 1}</span>}
-            {" " + arrCategories.filter((elem) => elem.id === id)[0].name}
+            {" " + name}
           </button>
         ))}
       {(isAllActiveCategory || (isActiveChange && activeCategory === id)) &&
         arrCategories &&
         arrCategories[arrCategories.length - 1].id !== id && (
           <>
-            {!isChangeName
-              ? EditDeleteCategoryButtons({
+            {isChangeName && activeCategory === id
+              ? ConfirmCategoryButtons({
+                  onConfirmClick: editCategoryAndCloseChangeName,
+                  onRefuseClick: notEditCategoryAndCloseChangeName,
+                })
+              : EditDeleteCategoryButtons({
                   id,
                   dispatch,
                   arrCategories,
                   isAddingCategory,
-                })
-              : ConfirmCategoryButtons({ id, dispatch, newName })}
+                  isChangeName,
+                })}
           </>
         )}
     </li>

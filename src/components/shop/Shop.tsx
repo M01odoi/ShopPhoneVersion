@@ -18,6 +18,7 @@ import {
 import ListProducts from "../listProducts/ListProducts";
 import Searching from "./shopComponents/Searching";
 import BtnPopupFilterAndPopup from "./shopComponents/BtnPopupFilterAndPopup";
+import Header from "./shopComponents/Header";
 
 library.add(
   faBars,
@@ -36,12 +37,7 @@ library.add(
 const Shop: React.FC = (): JSX.Element => {
   return (
     <>
-      <header className="header">
-        <h1>Shop</h1>
-        <button>
-          <FontAwesomeIcon icon="bars" className="fa-xl" />
-        </button>
-      </header>
+      <Header />
       <main>
         <section className="search">
           <Searching />

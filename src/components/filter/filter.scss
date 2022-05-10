@@ -12,12 +12,13 @@
 }
 
 .purple-color {
+  width: 31px;
   color: #b920b9;
 }
 
-.button-w31 {
-  width: 31px;
-}
+//.button-w31 {
+//  width: 31px;
+//}
 
 .categories {
   display: flex;
@@ -91,6 +92,9 @@
 
   .purple-border {
     border: #b920b9 3px solid;
+  }
+  input.purple-border:focus {
+    outline: none;
   }
 
   .button-black-white {

@@ -19,15 +19,13 @@ const Filter: React.FC = (): JSX.Element => {
   }, []);
 
   return (
-    <>
-      <Modal>
-        <Header />
-        <section>
-          <ButtonPanel />
-          <ListCategories />
-        </section>
-      </Modal>
-    </>
+    <Modal>
+      <Header />
+      <section>
+        <ButtonPanel />
+        <ListCategories />
+      </section>
+    </Modal>
   );
 };
 

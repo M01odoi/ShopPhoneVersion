@@ -28,7 +28,7 @@ const Header: React.FC = (): JSX.Element => {
         onClick={() =>
           isActiveChange ? notEdit() : dispatch(setIsShowModal(false))
         }
-        className={isActiveChange ? "purple-color button-w31" : "button-w31"}
+        className={isActiveChange ? "purple-color" : ""}
       >
         <FontAwesomeIcon
           icon={isActiveChange ? "x" : "arrow-left"}

@@ -1,48 +1,21 @@
-import React from "react";
-import { editCategory } from "../../../../store/reducers/categorySlice";
-import {
-  setIsChangeName,
-  setNewName,
-} from "../../../../store/reducers/categoryStateSlice";
+import React, { MouseEventHandler } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
-  id: number;
-  dispatch: Function;
-  newName: string;
+  onConfirmClick: MouseEventHandler<HTMLButtonElement>;
+  onRefuseClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 const ConfirmCategoryButtons: React.FC<Props> = ({
-  id,
-  dispatch,
-  newName,
+  onConfirmClick,
+  onRefuseClick,
 }): JSX.Element => {
-  const editCategoryAndCloseChangeName: React.MouseEventHandler<
-    HTMLButtonElement
-  > = (): void => {
-    dispatch(editCategory({ id, newName }));
-    dispatch(setNewName(""));
-    dispatch(setIsChangeName(false));
-  };
-  const notEditCategoryAndCloseChangeName: React.MouseEventHandler<
-    HTMLButtonElement
-  > = (): void => {
-    dispatch(setNewName(""));
-    dispatch(setIsChangeName(false));
-  };
-
   return (
     <>
-      <button
-        onClick={editCategoryAndCloseChangeName}
-        className="purple button-black-white"
-      >
+      <button onClick={onConfirmClick} className="purple button-black-white">
         <FontAwesomeIcon icon="check" className=" fa-lg" />
       </button>
-      <button
-        onClick={notEditCategoryAndCloseChangeName}
-        className="button-black-white"
-      >
+      <button onClick={onRefuseClick} className="button-black-white">
         <FontAwesomeIcon icon="x" className="fa-lg" />
       </button>
     </>

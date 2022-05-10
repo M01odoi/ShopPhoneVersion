@@ -28,6 +28,7 @@ const ButtonPanel: React.FC = (): JSX.Element => {
   const addingCategory: Function = (): void => {
     dispatch(setIsAddingCategory(true));
     dispatch(setCharLeft(20));
+    dispatch(setIsAllActiveCategory(false));
   };
   const preventActiveCategoryOnActivateChange: Function = (): void => {
     dispatch(setActiveCategory(1));
