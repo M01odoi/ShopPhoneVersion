@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ICategory } from "../../interfaces/ICategory";
 
 interface ISlice {
   isActiveChange: boolean;
-  activeCategory: number;
-  isAllActiveCategory: boolean;
+  activeCategory: number[];
   isAddingCategory: boolean;
   isChangeName: boolean;
   charLeft: number;
@@ -14,12 +14,11 @@ interface ISlice {
 
 const initialState: ISlice = {
   isActiveChange: false,
-  activeCategory: 0,
+  activeCategory: [],
   isAddingCategory: false,
   isChangeName: false,
   charLeft: 0,
   isValid: true,
-  isAllActiveCategory: false,
   newName: "",
   isShowModal: false,
 };
@@ -37,8 +36,15 @@ const categoryStateSlice = createSlice({
     setIsChangeName(state, action: PayloadAction<boolean>) {
       state.isChangeName = action.payload;
     },
+    resetActiveCategory(state) {
+      state.activeCategory = [];
+    },
     setActiveCategory(state, action: PayloadAction<number>) {
-      state.activeCategory = action.payload;
+      state.activeCategory.find((id) => id === action.payload)
+        ? (state.activeCategory = state.activeCategory.filter(
+            (id) => id !== action.payload
+          ))
+        : state.activeCategory.push(action.payload);
     },
     setCharLeft(state, action: PayloadAction<number>) {
       state.charLeft = action.payload;
@@ -46,8 +52,15 @@ const categoryStateSlice = createSlice({
     setIsValid(state, action: PayloadAction<boolean>) {
       state.isValid = action.payload;
     },
-    setIsAllActiveCategory(state, action: PayloadAction<boolean>) {
-      state.isAllActiveCategory = action.payload;
+    setAllActiveCategory(state, action: PayloadAction<ICategory[] | null>) {
+      action.payload &&
+        (state.activeCategory.length === action.payload.length
+          ? state.activeCategory.splice(0, state.activeCategory.length - 1)
+          : action.payload.forEach(
+              (obj) =>
+                !state.activeCategory.find((id) => id === obj.id) &&
+                state.activeCategory.push(obj.id)
+            ));
     },
     setNewName(state, action: PayloadAction<string>) {
       state.newName = action.payload;
@@ -65,9 +78,10 @@ export const {
   setIsChangeName,
   setCharLeft,
   setIsValid,
-  setIsAllActiveCategory,
+  setAllActiveCategory,
   setNewName,
   setIsShowModal,
+  resetActiveCategory,
 } = categoryStateSlice.actions;
 
 export default categoryStateSlice.reducer;

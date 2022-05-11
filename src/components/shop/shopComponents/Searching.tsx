@@ -8,7 +8,6 @@ const Searching: React.FC = (): JSX.Element => {
     e
   ): void => {
     e.preventDefault();
-    console.log(searchingName);
     setSearchingName("");
   };
 

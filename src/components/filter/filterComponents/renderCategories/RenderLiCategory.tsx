@@ -30,15 +30,10 @@ const RenderLiCategory: React.FC<Props> = ({
     isChangeName,
     isActiveChange,
     charLeft,
-    isAllActiveCategory,
     newName,
   } = useAppSelector((state) => state.categoryState);
   const dispatch = useAppDispatch();
   const ref = React.useRef<HTMLInputElement | null>(null);
-  const isSelectAllCategory: boolean | null =
-    isAllActiveCategory &&
-    arrCategories &&
-    arrCategories[arrCategories.length - 1].id !== id;
 
   const onChangeChangingName: ChangeEventHandler<HTMLInputElement> = (
     e: ChangeEvent<HTMLInputElement>
@@ -66,7 +61,7 @@ const RenderLiCategory: React.FC<Props> = ({
   return (
     <li>
       {arrCategories &&
-        (isChangeName && activeCategory === id ? (
+        (isChangeName && activeCategory.find((elem) => elem === id) ? (
           AddOrChangeCategoryInput({
             newName,
             onChange: onChangeChangingName,
@@ -76,29 +71,27 @@ const RenderLiCategory: React.FC<Props> = ({
         ) : (
           <button
             className={
-              (activeCategory === id && isActiveChange && !isAddingCategory) ||
-              isSelectAllCategory
+              activeCategory.find((elem) => elem === id) &&
+              isActiveChange &&
+              !isAddingCategory
                 ? "purple-border disabled-but-not-opacity"
                 : "disabled-but-not-opacity"
             }
-            onClick={() =>
-              !(
-                isAllActiveCategory &&
-                id === arrCategories[arrCategories.length - 1].id
-              ) && dispatch(setActiveCategory(id))
-            }
+            onClick={() => dispatch(setActiveCategory(id))}
             disabled={isChangeName}
           >
-            {((activeCategory === id && isActiveChange) ||
-              isSelectAllCategory) && <span>{index + 1}</span>}
+            {activeCategory.find((elem) => elem === id) && isActiveChange && (
+              <span>{index + 1}</span>
+            )}
             {" " + name}
           </button>
         ))}
-      {(isAllActiveCategory || (isActiveChange && activeCategory === id)) &&
+      {isActiveChange &&
+        activeCategory.find((elem) => elem === id) &&
         arrCategories &&
         arrCategories[arrCategories.length - 1].id !== id && (
           <>
-            {isChangeName && activeCategory === id
+            {isChangeName && activeCategory.find((elem) => elem === id)
               ? ConfirmCategoryButtons({
                   onConfirmClick: editCategoryAndCloseChangeName,
                   onRefuseClick: notEditCategoryAndCloseChangeName,

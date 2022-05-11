@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import {
+  resetActiveCategory,
   setIsActiveChange,
   setIsAddingCategory,
-  setIsAllActiveCategory,
   setIsChangeName,
   setIsShowModal,
 } from "../../../store/reducers/categoryStateSlice";
@@ -19,7 +19,7 @@ const Header: React.FC = (): JSX.Element => {
     dispatch(setIsActiveChange(false));
     dispatch(setIsAddingCategory(false));
     dispatch(setIsChangeName(false));
-    dispatch(setIsAllActiveCategory(false));
+    dispatch(resetActiveCategory());
   };
 
   return (

@@ -1,8 +1,18 @@
-import {addNewCategory} from "../../../../store/reducers/categorySlice";
-import React, {ChangeEvent, ChangeEventHandler, MouseEventHandler, useEffect, useState,} from "react";
+import { addNewCategory } from "../../../../store/reducers/categorySlice";
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import RenderLiCategory from "./RenderLiCategory";
-import {useAppDispatch, useAppSelector} from "../../../../hooks/redux";
-import {setIsAddingCategory, setIsValid,} from "../../../../store/reducers/categoryStateSlice";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
+import {
+  setActiveCategory,
+  setIsAddingCategory,
+  setIsValid,
+} from "../../../../store/reducers/categoryStateSlice";
 import isValidation from "../../isValidation";
 import AddOrChangeCategoryInput from "../categoryChanges/AddOrChangeCategoryInput";
 import ConfirmCategoryButtons from "../categoryChanges/ConfirmCategoryButtons";
@@ -20,6 +30,7 @@ const RenderUlCategories: React.FC = (): JSX.Element => {
   const validationCategory: MouseEventHandler<HTMLButtonElement> = (): void => {
     if (isValidation(newCategory)) {
       dispatch(addNewCategory(newCategory));
+      dispatch(setActiveCategory(1));
       setNewCategory("New Category");
       dispatch(setIsAddingCategory(false));
     } else {
@@ -30,6 +41,7 @@ const RenderUlCategories: React.FC = (): JSX.Element => {
   const notConfirmAddingCategory: MouseEventHandler<
     HTMLButtonElement
   > = (): void => {
+    dispatch(setActiveCategory(1));
     dispatch(setIsValid(true));
     dispatch(setIsAddingCategory(false));
     setNewCategory("New Category");

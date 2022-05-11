@@ -2,22 +2,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import {
+  resetActiveCategory,
   setActiveCategory,
   setCharLeft,
   setIsActiveChange,
   setIsAddingCategory,
-  setIsAllActiveCategory,
+  setAllActiveCategory,
   setIsChangeName,
 } from "../../../store/reducers/categoryStateSlice";
 import { updateCategory } from "../../../store/reducers/categorySlice";
 
 const ButtonPanel: React.FC = (): JSX.Element => {
-  const {
-    isAddingCategory,
-    isChangeName,
-    isActiveChange,
-    isAllActiveCategory,
-  } = useAppSelector((state) => state.categoryState);
+  const { isAddingCategory, isChangeName, isActiveChange } = useAppSelector(
+    (state) => state.categoryState
+  );
+  const categories = useAppSelector((state) => state.category.fakeCategories);
   const dispatch = useAppDispatch();
 
   const acceptCategoryAndCloseChanging: Function = (): void => {
@@ -28,7 +27,7 @@ const ButtonPanel: React.FC = (): JSX.Element => {
   const addingCategory: Function = (): void => {
     dispatch(setIsAddingCategory(true));
     dispatch(setCharLeft(20));
-    dispatch(setIsAllActiveCategory(false));
+    dispatch(resetActiveCategory());
   };
   const preventActiveCategoryOnActivateChange: Function = (): void => {
     dispatch(setActiveCategory(1));
@@ -58,8 +57,7 @@ const ButtonPanel: React.FC = (): JSX.Element => {
                   disabled={isAddingCategory || isChangeName}
                   className="button-grey-bg"
                   onClick={() => {
-                    dispatch(setActiveCategory(1));
-                    dispatch(setIsAllActiveCategory(!isAllActiveCategory));
+                    dispatch(setAllActiveCategory(categories));
                   }}
                 >
                   All
